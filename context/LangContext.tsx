@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 
-import { LOCAL_LOCALE_KEY } from "@/components/language-detect/LanguageDetect";
+import { LOCAL_LOCALE_KEY } from "@/components/language-detect/language-detector/LanguageDetect";
 
 export type langContextType = {
   lang: string;
@@ -15,7 +15,8 @@ type langContextProps = {
 export const LangData = createContext({} as langContextType);
 
 export default function LangContext({ children }: langContextProps) {
-  const [lang, setLang] = useState("br");
+  
+  const [lang, setLang] = useState("pt-BR");
 
   const router = useRouter();
 

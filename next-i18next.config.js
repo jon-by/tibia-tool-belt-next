@@ -3,8 +3,8 @@ module.exports = {
   // https://www.i18next.com/overview/configuration-options#logging
   debug: false,
   i18n: {
-    defaultLocale: "br",
-    locales: ["br", "en"],
+    defaultLocale: "pt-BR",
+    locales: ["pt-BR", "en"],
     localeDetection:false
   },
   /** To avoid issues when deploying to some paas (vercel...) */
@@ -12,7 +12,7 @@ module.exports = {
     typeof window === "undefined"
       ? require("path").resolve("./public/locales")
       : "/locales",
-      fallbackLng:"br"
+      fallbackLng:"en"
       
 
   

@@ -1,16 +1,19 @@
-import "@/styles/globals.css";
+import type { AppProps } from "next/app";
+
+import { appWithTranslation } from "next-i18next";
+import LanguageDetect from "@/components/language-detect/language-detector/LanguageDetect";
 import LangContext from "@/context/LangContext";
 
-import type { AppProps } from "next/app";
-import { appWithTranslation } from "next-i18next";
-import LanguageDetect from "@/components/language-detect/LanguageDetect";
+import "./globalStyles.css"
+
+import { AppWrapper } from "./app.styled";
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <LangContext>
-      <>
+      <AppWrapper>
         <LanguageDetect />
         <Component {...pageProps} />
-      </>
+      </AppWrapper>
     </LangContext>
   );
 };

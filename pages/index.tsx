@@ -2,31 +2,27 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 //import { Poppins } from "next/font/google";
+import { useLanguage } from "../context/LangContext";
 
-import { useContext } from "react"
-import LangContext, { useLanguage } from "../context/LangContext";
-import { langContextType } from "@/context/LangContext";
+import Home from "@/components/home/Home";
 
-type Props = {
- 
-}
+type Props = {};
 
-export default function Home(
-  _props: InferGetStaticPropsType<typeof getStaticProps>
-) {
-  const {lang, setLang} = useLanguage()
+type homeProps = {
+  props: InferGetStaticPropsType<typeof getStaticProps>;
+};
+
+export default function HomePage(props: homeProps) {
+  const { lang, setLang } = useLanguage();
   const { t } = useTranslation();
 
-  return <>{t("teste")} {lang}
-  
-  <button onClick={() => setLang(lang==="br"? "en": "br")}>weeee</button>
-  </>;
+  return (
+    <Home/>
+  );
 }
-
-
 
 export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? "br", ["common"])),
+    ...(await serverSideTranslations(locale ?? "pt-BR", ["common"])),
   },
 });
