@@ -10,3 +10,4 @@ export const ComponentsWrapper = styled.div`
 padding: 2rem;
 background-color: red;
 `
+ 

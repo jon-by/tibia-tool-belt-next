@@ -6,7 +6,7 @@ import LangContext from "@/context/LangContext";
 
 import "./globalStyles.css"
 
-import { AppWrapper } from "./app.styled";
+import { AppWrapper } from "../components/app/app.styled";
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <LangContext>
