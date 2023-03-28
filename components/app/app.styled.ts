@@ -8,6 +8,8 @@ flex-direction: column;
 
 export const ComponentsWrapper = styled.div`
 padding: 2rem;
-background-color: red;
+display: flex;
+flex-direction: column;
+padding: 0 .5rem;
 `
  

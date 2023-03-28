@@ -1,28 +1,32 @@
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 //import { Poppins } from "next/font/google";
-import { useLanguage } from "../context/LangContext";
-
-import Home from "@/components/home/Home";
+import TopBar from "@/components/top-bar/TopBar";
+import { ComponentsWrapper } from "@/components/app/app.styled";
+import { useTranslation } from "next-i18next";
 
 type Props = {};
 
 type homeProps = {
-  props: InferGetStaticPropsType<typeof getStaticProps>;
+  _props: InferGetStaticPropsType<typeof getStaticProps>;
 };
-
-export default function HomePage(props: homeProps) {
-  const { lang, setLang } = useLanguage();
-  const { t } = useTranslation();
-
+export default function Home(_props: homeProps) {
+  const { t } = useTranslation("tags");
   return (
-    <Home/>
+    <ComponentsWrapper>
+      <Head>
+        <title>Tibia Tool Belt</title>
+        <meta property="og:title" content="Tibia Tool Belt" key="title" />
+        <meta name="description" content={`${t("home-description")}`} />
+      </Head>
+      <TopBar />      
+    </ComponentsWrapper>
   );
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? "pt-BR", ["common"])),
+    ...(await serverSideTranslations(locale ?? "pt-BR", ["tags"])),
   },
 });
