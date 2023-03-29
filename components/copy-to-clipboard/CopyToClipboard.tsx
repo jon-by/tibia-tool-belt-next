@@ -9,14 +9,14 @@ import { CypyButton } from "./copyToClipboard.styled";
 type copyToClipboardProps = {
   children: string;
   title?: string;
-  svgMargin?: boolean;
+  svgmargin?: number;
   toastMessage?: string;
 };
 
 const CopyToClipboard = ({
   children,
   title,
-  svgMargin = false,
+  svgmargin = 0,
 }: copyToClipboardProps) => {
   const [copied, setCopied] = useState(false);
   const { t } = useTranslation();
@@ -39,9 +39,9 @@ const CopyToClipboard = ({
         transition: { duration: 0.3 },
       }}
       whileTap={{ scale: 0.95 }}
-      svgMargin={svgMargin}
+      svgmargin={svgmargin}
       title="transfer message"
-      copied={copied}
+      copied={copied? 1:0}
       onClick={handleClick}
     >
       {title || title === "" ? title : children}

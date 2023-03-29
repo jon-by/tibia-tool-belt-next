@@ -6,7 +6,7 @@ type ButtonProps = {
   handleClick: () => void;
   Icon?: React.FC;
   iconPosition?: "left" | "right";
-  padding?: string | boolean;
+  padding?: string | number;
 };
 
 const Button = ({
@@ -14,7 +14,7 @@ const Button = ({
   handleClick,
   Icon,
   iconPosition = "left",
-  padding = false,
+  padding = 0,
 }: ButtonProps) => {
   return (
     <ButtonStyled

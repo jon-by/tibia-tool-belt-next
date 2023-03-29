@@ -52,7 +52,7 @@ const Result = ({
           {t("to")} {t("each")}
         </div>
         <div>
-          <CopyToClipboard svgMargin={true} title={`${t("copyAll")}`}>
+          <CopyToClipboard svgmargin={1} title={`${t("copyAll")}`}>
             {`${payments!
               .map(({ name, amount, payTo }) => `${name} ${t("pays")} ${toK(amount)} ${t("to")} ${payTo} (transfer ${amount} to ${payTo}) \n`)
               .join("")}\n${t("totalProfit")} ${toK(individualProfit! * numberOfplayers!)} ${t("individualProfit")} ${toK(individualProfit!)} ${t("each")}

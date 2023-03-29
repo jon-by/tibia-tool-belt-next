@@ -11,8 +11,8 @@ const bounce = keyframes`
 `
 
 interface copyButtonProps {
-    copied: boolean,
-    svgMargin:boolean
+    copied: number,
+    svgmargin:number
 }
 
 export const CypyButton = styled(motion.button)<copyButtonProps>`
@@ -29,7 +29,7 @@ align-items: center;
     
 }
 svg{
-    ${({svgMargin}) => svgMargin && "margin-left: 8px;"}
+    ${({svgmargin}) => svgmargin && "margin-left: 8px;"}
 }
 
 svg{
