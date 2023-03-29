@@ -19,3 +19,8 @@ ul, li{
 a{
     text-decoration: none;
 }
+
+.react-tooltip {    
+    position: absolute;
+    z-index: 10;
+}
