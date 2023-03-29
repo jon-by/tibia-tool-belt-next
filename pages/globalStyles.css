@@ -9,3 +9,13 @@ body{
     color: #EAEEFF;
     font-size: .9rem;    
 }
+
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
