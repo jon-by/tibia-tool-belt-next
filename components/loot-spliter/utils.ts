@@ -2,8 +2,6 @@ import { IplayersData, IplayerBalance, Ipayments, topsType, IgetPayments } from 
 
 export function getPayments(partyData: string): IgetPayments {
 
-    if (!validatePartyData(partyData)) return { error: true }
-
     const withoutFirstSection = removeFirstSection(partyData)
 
     const players = findPlayers(withoutFirstSection)
@@ -24,13 +22,13 @@ export function getPayments(partyData: string): IgetPayments {
 }
 
 function getPerformanceData(huntData: IplayersData[]) {
-    const tops: topsType = { 
+    const tops: topsType = {
         //loot: [],
         //supplies: [],
-       //balance: [], 
-        damage: [], 
+        //balance: [], 
+        damage: [],
         healing: [],
-     }
+    }
 
     Object.keys(tops).map((value) => {
         tops[value as keyof typeof tops] = huntData.map(data => {
@@ -173,13 +171,14 @@ function getNumberOfPlayers(partyDataWithoutFirstSection: string) {
 }
 
 
-function validatePartyData(partyData: string) {
-    if (partyData.length < 50 ||
+export function validatePartyData(partyData: string) {
+    if (!partyData ||
         !partyData.includes("Balance") ||
         !partyData.includes("Supplies") ||
         !partyData.includes("Loot") ||
         !partyData.includes("Session data") ||
-        !partyData.includes("Loot Type")) {
+        !partyData.includes("Loot Type") ||
+        partyData.length < 50) {
         return false
     }
     return true

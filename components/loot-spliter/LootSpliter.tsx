@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InformationIcon } from "../icons/icons";
+import { useTranslation } from "next-i18next";
+import { getPayments,validatePartyData } from "./utils";
+
+import { Ipayments } from "./@types/loot-spliter";
+
 import {
   LootSpliterContent,
+  LootSpliterInput,
   TitleWrapper,
   ToolTip,
 } from "./lootSpliter.styled";
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+type Props = {};
+
 const LootSpliter = () => {
   const [showTip, setShowTip] = useState(false);
+  const [huntSession, setHuntSession] = useState("")
+  const [paymentData, setPaymentData] = useState<Ipayments[] | undefined>()
+  const { t } = useTranslation("loot-spliter");
+
+
+function handleChange(event:  React.FormEvent<HTMLTextAreaElement>){  
+  if(!validatePartyData(event.currentTarget.value)) return  
+  setHuntSession(event.currentTarget.value)
+}
+
+useEffect(()=>{
+const payments = getPayments(huntSession)
+  setPaymentData(payments.payments)
+},[huntSession])
+
+
   return (
     <LootSpliterContent>
       <TitleWrapper
@@ -34,14 +58,17 @@ const LootSpliter = () => {
                 width={315}
                 height={122}
                 src="/images/party-hunt-analyser.png"
-                
               />
             </ToolTip>
           )}
         </AnimatePresence>
       </TitleWrapper>
+
+      <LootSpliterInput onChange={handleChange} placeholder={`${t("input-placeholder")}`}  />
     </LootSpliterContent>
   );
 };
 
-export default LootSpliter;
+export default LootSpliter
+
+

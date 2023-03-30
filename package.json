@@ -16,6 +16,7 @@
     "@types/styled-components": "^5.1.26",
     "dom-to-image": "^2.6.0",
     "framer-motion": "^10.9.2",
+    "fs": "^0.0.1-security",
     "i18next": "^22.4.13",
     "next": "13.2.4",
     "next-i18next": "^13.2.2",

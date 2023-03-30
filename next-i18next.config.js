@@ -5,17 +5,14 @@ module.exports = {
   i18n: {
     defaultLocale: "pt-BR",
     locales: ["pt-BR", "en"],
-    localeDetection:false
+    localeDetection: false,
   },
   /** To avoid issues when deploying to some paas (vercel...) */
   localePath:
     typeof window === "undefined"
       ? require("path").resolve("./public/locales")
       : "/locales",
-      fallbackLng:"en"
-      
-
-  
+  fallbackLng: "en",
 
   /**
    * @link https://github.com/i18next/next-i18next#6-advanced-configuration
