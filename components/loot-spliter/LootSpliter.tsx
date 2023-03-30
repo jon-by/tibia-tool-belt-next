@@ -1,98 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { Tooltip } from "react-tooltip";
-import { toast } from "react-toastify";
-
-import { getPayments } from "./utils";
-import { Ipayments, topsType } from "./@types/loot-spliter";
-import { useTranslation } from "react-i18next";
-
+import React, { useState } from "react";
+import { InformationIcon } from "../icons/icons";
 import {
-  Steps,
-  Content,
-  InformationIconWrapper,
-  TextArea,
+  LootSpliterContent,
+  TitleWrapper,
+  ToolTip,
 } from "./lootSpliter.styled";
-
-//import { AppWrapper } from "../../globalStyles";
-
-import Tops from "./Tops";
-import { InformationIcon, CalcIcon } from "../icons/icons";
-import Button from "../button/Button";
-import Result from "./Result";
 import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const LootSpliter = () => {
-  const [partyData, setPartyData] = useState("");
-  const [payments, setPayments] = useState<Ipayments[] | undefined>(undefined);
-  const [tops, setTops] = useState<topsType | undefined>(undefined);
-  const [individualProfit, setIndividualProfit] = useState<number | undefined>(
-    0
-  );
-  const [numberOfPlayers, setNumberOfPlayers] = useState<number | undefined>(0);
-
-  const { t } = useTranslation();
-
-  function handleChange(event: React.FormEvent<HTMLTextAreaElement>) {
-    setPartyData(event.currentTarget.value);
-  }
-
-  function handleClick() {
-    const paymentsResult = getPayments(partyData);
-
-    if (paymentsResult.error) {
-      toast.error(t("partyHuntSessionFormatIsWrong"), { autoClose: 5000 });
-      return;
-    }
-    setPayments(paymentsResult.payments);
-    setTops(paymentsResult.tops);
-    setIndividualProfit(paymentsResult.individualProfit);
-    setNumberOfPlayers(paymentsResult.numberOfPlayers);
-  }
-
- 
+  const [showTip, setShowTip] = useState(false);
   return (
-    <div>
-      <Content>
-        <Steps>
-          <h1>Loot Spliter</h1>
-          <InformationIconWrapper  id="loot-spliter-tooltip" >
-            <InformationIcon width={20} heigth={20} />
-          </InformationIconWrapper>
-           <Tooltip  anchorSelect="#loot-spliter-tooltip" place="bottom">
-            <img
-              src="/images/party-hunt-analyser.png"
-              alt="tibia party hunt analyser"
-            />
-          </Tooltip>
-        </Steps>
-
-        <TextArea
-          onChange={handleChange}
-          placeholder={`${t("pastePartyHuntAnalyser")}`}
-        ></TextArea>
-
-        <Button
-          padding="8px 8px"
-          iconPosition="right"
-          Icon={CalcIcon}
-          handleClick={handleClick}
-          content={`${t("ctaCalc")}`}
-        />
-
-        {payments && payments.length && (
-          <AnimatePresence>
-            <Result
-              key="result-content"
-              payments={payments}
-              numberOfplayers={numberOfPlayers}
-              individualProfit={individualProfit}
-            />
-          </AnimatePresence>
-        )}
-
-        <Tops tops={tops} />
-      </Content>
-    </div>
+    <LootSpliterContent>
+      <TitleWrapper
+        onMouseEnter={() => setShowTip(true)}
+        onMouseLeave={() => setShowTip(false)}
+      >
+        <h1>Loot Spliter</h1> <InformationIcon heigth={18} width={18} />
+        <AnimatePresence>
+          {showTip && (
+            <ToolTip
+              initial={{ opacity: 1 }}
+              animate={{ opacity: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] }}
+              transition={{
+                type: "spring",
+                bounce: 0.2,
+                duration: 0.5,
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <Image
+                alt="Tibia party session"
+                width={315}
+                height={122}
+                src="/images/party-hunt-analyser.png"
+                
+              />
+            </ToolTip>
+          )}
+        </AnimatePresence>
+      </TitleWrapper>
+    </LootSpliterContent>
   );
 };
 

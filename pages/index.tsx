@@ -19,8 +19,7 @@ export default function Home(_props: homeProps) {
         <title>Tibia Tool Belt</title>
         <meta property="og:title" content="Tibia Tool Belt" key="title" />
         <meta name="description" content={`${t("home-description")}`} />
-      </Head>
-      <TopBar />      
+      </Head>          
     </ComponentsWrapper>
   );
 }

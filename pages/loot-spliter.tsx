@@ -1,12 +1,12 @@
 import React from 'react'
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ComponentsWrapper } from '@/components/app/app.styled'
-import TopBar from '@/components/top-bar/TopBar'
+
 import Head from 'next/head'
+import LootSpliter from '@/components/loot-spliter/LootSpliter';
 
 import { useTranslation } from "next-i18next";
-import LootSpliter from '@/components/loot-spliter/LootSpliter';
 
 type Props = {};
 const lootSpliter = () => {
@@ -17,9 +17,8 @@ const lootSpliter = () => {
         <title>Loot Spliter | Tibia Tool Belt</title>
         <meta property="og:title" content="Loot Spliter | Tibia Tool Belt" key="title" />
         <meta name="description" content={`${t("loot-spliter")}`} />
-        </Head>
-        <TopBar/>
-        <LootSpliter/>
+        </Head> 
+        <LootSpliter/>              
     </ComponentsWrapper>
   )
 }
