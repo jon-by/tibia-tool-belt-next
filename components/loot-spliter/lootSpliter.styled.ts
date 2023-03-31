@@ -2,7 +2,12 @@ import { COLORS } from '@/constants/global'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const LootSpliterContent = styled.div``
+export const LootSpliterContent = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`
 
 export const TitleWrapper = styled.div`
 display: flex;
@@ -37,7 +42,7 @@ min-width: 300px;
 min-height: 35px;
 height: 35px;
 padding: 8px;
-text-align: center;
+text-align: left;
 margin: 16px 0;
 color: ${COLORS["white"]};
 font-size: 12px;

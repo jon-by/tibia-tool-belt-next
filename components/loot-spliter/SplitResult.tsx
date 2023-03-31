@@ -10,9 +10,9 @@ import {
 import CopyToClipboard from "../copy-to-clipboard/CopyToClipboard";
 import { toK } from "./utils";
 
-//import ResultIten from "./ResultIten";
+import ResultIten from "./ResultIten";
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 
 const SplitResult = ({
@@ -20,7 +20,7 @@ const SplitResult = ({
   individualProfit,
   numberOfplayers,
 }: resultType) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("loot-spliter");
   return (
     <ResultWrapper
       initial={{ x: -100, opacity: 1 }}
@@ -35,7 +35,7 @@ const SplitResult = ({
     >
       <ResultTitle>{t("result")}</ResultTitle>
       <ResultsItens>
-        {/* {payments!.map((payments) => {
+        {payments!.map((payments) => {
           return (
             <ResultIten
               key={`${payments.name}${payments.amount}`}
@@ -44,13 +44,13 @@ const SplitResult = ({
               payTo={payments.payTo}
             />
           );
-        })} */}
+        })}
       </ResultsItens>
       <TotalProfit>
         <div>
           <Image width={9} height={9} src="/images/loot-spliter/gold-coin.png" alt="tibia gold coin"/>
-          <strong>{Math.round(individualProfit! / 1000).toFixed()}k</strong>{" "}
-          {t("to")} {t("each")}
+          <strong> {Math.round(individualProfit! / 1000).toFixed()}k </strong>
+          {t("to")}{t("each")}
         </div>
         <div>
           <CopyToClipboard title={`${t("copyAll")}`}>

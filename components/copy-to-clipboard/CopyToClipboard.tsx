@@ -1,7 +1,7 @@
 import { useState, useTransition } from "react";
 import { toast } from "react-toastify";
 import { COLORS } from "@/constants/global";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { CheckMark, CopyIcon } from "../icons/icons";
 
 import { CopyButton } from "./copyToClipboard.styled";
@@ -18,7 +18,7 @@ const CopyToClipboard = ({
   title, 
 }: copyToClipboardProps) => {
   const [copied, setCopied] = useState(0);
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   async function handleClick() {
     try {
