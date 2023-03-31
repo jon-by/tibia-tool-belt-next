@@ -1,3 +1,11 @@
 {
-    "input-placeholder": "Cole o party hunt session aqui"
+    "input-placeholder": "Cole o party hunt session aqui",
+    "wrong-session-data": "O formato do party analyser está incorreto, por favor, copie o log e tente novamente.",
+    "result": "Resultado",
+    "to": "para",
+    "each": "cada",
+    "copyAll": "Copiar todos",
+    "pays": "paga",
+    "totalProfit": "O profit total foi",
+    "individualProfit": "que da"
 }

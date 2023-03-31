@@ -1,3 +1,11 @@
 {
-    "input-placeholder": "Paste party hunt session log heres"
+    "input-placeholder": "Paste party hunt session log heres",
+    "wrong-session-data": "Incorrect analyser data. Please copy the log and try again.",
+    "result": "Result",
+    "to": "to",
+    "each": "each",
+    "copyAll": "Copy all",
+    "pays": "pays",
+    "totalProfit": "the total profit was",
+    "individualProfit": "with is"
 }
