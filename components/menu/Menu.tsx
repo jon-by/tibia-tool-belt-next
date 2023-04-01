@@ -43,6 +43,10 @@ const Menu = () => {
     setIsOpen(!isOpen);
   }
 
+  useEffect(()=>{
+    setIsOpen(false)
+  },[router.pathname])
+
   return (
     <MenuWrapper>
       <MenuToggle isOpen={isOpen} handleChange={handleChange} />

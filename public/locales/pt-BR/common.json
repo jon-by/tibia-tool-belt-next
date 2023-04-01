@@ -1,5 +1,8 @@
 {
     "teste": "testando esse treco",    
-    "copyToClipboardMessage": "Copiado para a área de tranferência"    
+    "copyToClipboardMessage": "Copiado para a área de tranferência",
+    "imageCopiedMessage": "Imagem copiada, manda um CTRL + V pra galera!",
+    "copyToImageError": "Erro ao copiar a imagem, tente novamente.",
+    "copyAsImage": "Copiar como imagem"
     
 }

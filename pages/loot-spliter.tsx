@@ -28,7 +28,7 @@ export default lootSpliter
 
 export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
     props: {
-      ...(await serverSideTranslations(locale ?? "pt-BR", ["tags", "loot-spliter"])),
+      ...(await serverSideTranslations(locale ?? "pt-BR", ["tags", "loot-spliter", "common"])),
     },
   });
   

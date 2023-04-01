@@ -1,5 +1,8 @@
 {
     "teste": "testing this shit",
-    "copyToClipboardMessage": "Copied to clipboard"
+    "copyToClipboardMessage": "Copied to clipboard",
+    "imageCopiedMessage": "Image copied CTRL + V to send it",
+    "copyToImageError": "error copying image, please try again",
+    "copyAsImage": "Copy as image"
     
 }

@@ -68,5 +68,6 @@ font-size: 12px;
     &::placeholder{
     color: ${COLORS["white"]};
     opacity: .6;
+    text-align: center;
     }
 `

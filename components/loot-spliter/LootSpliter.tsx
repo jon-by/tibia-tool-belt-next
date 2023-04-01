@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { toast } from "react-toastify";
 import Image from "next/image";
 
-import { Ipayments } from "./@types/loot-spliter";
+import { Ipayments, topsType } from "./@types/loot-spliter";
 import { getPayments, validatePartyData } from "./utils";
 
 import {
@@ -15,6 +15,7 @@ import {
   ToolTip,
 } from "./lootSpliter.styled";
 import SplitResult from "./SplitResult";
+import Tops from "./Tops";
 
 const toastId = "wrong-session-data";
 
@@ -25,11 +26,14 @@ const LootSpliter = () => {
   const [huntSession, setHuntSession] = useState("");
   const [paymentData, setPaymentData] = useState<Ipayments[] | undefined>();
   const [numberOfPlayers, setNumberOfPlayers] = useState<number | undefined>(0);
-  const [individualProfit, setIndividualProfit] = useState<number | undefined>(0);
+  const [tops, setTops] = useState<topsType | undefined>(undefined);
+  const [individualProfit, setIndividualProfit] = useState<number | undefined>(
+    0
+  );
   const { t } = useTranslation("loot-spliter");
 
   function handleChange(analyserInput: React.FormEvent<HTMLTextAreaElement>) {
-    if (!validatePartyData(analyserInput.currentTarget.value)) {
+    if (!validatePartyData(analyserInput.currentTarget.value) && !huntSession) {
       if (toast.isActive(toastId)) return;
       toast.error(`${t("wrong-session-data")}`, { toastId });
       return;
@@ -40,8 +44,9 @@ const LootSpliter = () => {
   useEffect(() => {
     const payments = getPayments(huntSession);
     setPaymentData(payments.payments);
-    setIndividualProfit(payments.individualProfit)
-    setNumberOfPlayers(payments.numberOfPlayers)
+    setIndividualProfit(payments.individualProfit);
+    setTops(payments.tops);
+    setNumberOfPlayers(payments.numberOfPlayers);
   }, [huntSession]);
 
   return (
@@ -88,6 +93,7 @@ const LootSpliter = () => {
             individualProfit={individualProfit}
           />
         )}
+        {paymentData && paymentData.length > 0 && <Tops  tops={tops} />}
       </AnimatePresence>
     </LootSpliterContent>
   );

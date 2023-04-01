@@ -25,3 +25,7 @@ a{
     position: absolute;
     z-index: 10;
 }
+
+button{
+    border-radius: 5px;
+}
