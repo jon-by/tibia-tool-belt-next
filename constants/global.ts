@@ -8,7 +8,8 @@ export const COLORS = {
     "amount": "#bfbcbc",
     "timer-item-bg": "#131732",
     "active": "#D1A617",
-    "body-bg": "#1f2029"
+    "body-bg": "#1f2029",
+    "item-active": "#f0f0f0"
 }
 
 export const LANGUAGES = [
