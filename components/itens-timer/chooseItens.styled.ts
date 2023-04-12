@@ -65,3 +65,11 @@ justify-content: center;
 align-items: center;
 gap: 2px;
 `
+export const ClearButtonWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: flex-end;
+margin-top: 1px;
+margin-top: 8px;
+
+`

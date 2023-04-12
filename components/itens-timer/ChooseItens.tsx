@@ -11,14 +11,17 @@ import {
   FiltersWrapper,
   FilterList,
   FilterItem,
+  ClearButtonWrapper,
 } from "./chooseItens.styled";
 import Toggle from "../toggle/Toggle";
+import Button from "../button/Button";
 
 type chooseItensProps = {
   usingItens: string[];
-  setUsingItens: (itemId: string) => void;
+  addItem: (itemId: string) => void;
+  setUsingItens: ([]) => void;
 };
-const ChooseItens = ({ usingItens, setUsingItens }: chooseItensProps) => {
+const ChooseItens = ({ usingItens, addItem, setUsingItens }: chooseItensProps) => {
   const { t } = useTranslation("itens-timer");
 
   const [filtered, setFiltered] = useState(TIMED_ITENS);
@@ -30,6 +33,12 @@ const ChooseItens = ({ usingItens, setUsingItens }: chooseItensProps) => {
     rp: false,
   });
 
+  function handleClear() {
+    setFilter({ ...filter, ek: false, ed: false, ms: false, rp: false });
+    setFiltered(TIMED_ITENS);
+    setUsingItens([])
+  }
+
   useEffect(() => {
     const { ek, ed, ms, rp } = filter;
     if (!ek && !ed && !ms && !rp) {
@@ -37,10 +46,10 @@ const ChooseItens = ({ usingItens, setUsingItens }: chooseItensProps) => {
       return;
     }
     const filteredItens = TIMED_ITENS.filter((item) => {
-      if (filter.ed && item.vocation?.includes("ed")) return true;
-      if (filter.ek && item.vocation?.includes("ek")) return true;
-      if (filter.rp && item.vocation?.includes("rp")) return true;
-      if (filter.ms && item.vocation?.includes("ms")) return true;
+      if (ed && item.vocation?.includes("ed")) return true;
+      if (ek && item.vocation?.includes("ek")) return true;
+      if (rp && item.vocation?.includes("rp")) return true;
+      if (ms && item.vocation?.includes("ms")) return true;
     });
 
     setFiltered(filteredItens);
@@ -81,13 +90,16 @@ const ChooseItens = ({ usingItens, setUsingItens }: chooseItensProps) => {
             />
           </FilterItem>
         </FilterList>
+        <ClearButtonWrapper>
+          <Button content={`${t("clear")}`} handleClick={handleClear} />
+        </ClearButtonWrapper>
       </FiltersWrapper>
 
       <Itens>
         {filtered.map((item) => {
           return (
             <Item
-              onClick={() => setUsingItens(item.id)}
+              onClick={() => addItem(item.id)}
               whileHover={{
                 scale: 1.02,
                 transition: {},

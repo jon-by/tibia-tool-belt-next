@@ -16,3 +16,6 @@ export const LANGUAGES = [
     { code: "en", title: "English" },
     { code: "pt-BR", title: "Portugês" }
 ]
+
+
+export const USING_ITENS_LOCAL_KEY = "using-itens-local"

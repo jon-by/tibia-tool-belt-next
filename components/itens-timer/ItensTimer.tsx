@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { USING_ITENS_LOCAL_KEY } from "@/constants/global";
+import React, { useEffect, useRef, useState } from "react";
 import ChooseItens from "./ChooseItens";
 
 const ItensTimer = () => {
   const [usingItens, setUsingItens] = useState<string[]>([]);
+  const initialRender = useRef(true);
 
-  function handleItemClick(itemId: string) {
+  function addItem(itemId: string) {
     const arr = [...usingItens];
 
     const itemIndex = arr.indexOf(itemId);
@@ -14,7 +16,24 @@ const ItensTimer = () => {
     setUsingItens(arr);
   }
 
-  return <ChooseItens setUsingItens={handleItemClick} usingItens={usingItens} />;
+  useEffect(() => {
+    if (initialRender.current) {
+
+      const localItens = localStorage.getItem(USING_ITENS_LOCAL_KEY);
+
+      if (localItens && Array.isArray(JSON.parse(localItens))) {
+        setUsingItens(JSON.parse(localItens));
+      }
+
+      initialRender.current = false;
+    } else {
+      localStorage.setItem(USING_ITENS_LOCAL_KEY, JSON.stringify(usingItens));
+    }
+  }, [usingItens]);
+
+  return (
+    <ChooseItens addItem={addItem} setUsingItens={setUsingItens} usingItens={usingItens} />
+  );
 };
 
 export default ItensTimer;
