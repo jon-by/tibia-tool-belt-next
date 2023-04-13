@@ -1,4 +1,26 @@
 {
-    "chooseItens": "Choose your Itens",
-    "clear": "Clear"
+  "chooseItens": "Choose your Itens",
+  "clear": "Clear",
+  "chooseAtLeastOne": "Choose at least 1 item",
+  "startAll": "Start all",
+  "pauseAll": "Pause all",
+  "restartAll": "Restart All",
+  "speechNotSuported": "Your browser does not support speech",
+  "renewing": "Renewing {{name}}",
+  "notificationDenied": "Notifications are disabled for our website, enable them to be able to use them",
+  "notifyWillExpire": "will expire in {{seconds}} seconds",
+  "expired": "expired",
+  "clickToRenew": "Click here to renew",
+  "notification": "Notification",
+  "test": "Test",
+  "autoRenew": "Auto renew",
+  "autoRenewToolTip": "Automatically resets the timer",
+  "autoRenewAfter": "after {{seconds}} seconds",
+  "alert": "Alert",
+  "minBeforeEnd": "min before end",
+  "autoRenewWith": "Auto renew with",
+  "secondsOfDelay": "seconds of delay",
+  "done": "Done"
+  
+  
 }

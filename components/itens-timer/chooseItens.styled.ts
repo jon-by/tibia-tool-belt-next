@@ -65,9 +65,9 @@ justify-content: center;
 align-items: center;
 gap: 2px;
 `
-export const ClearButtonWrapper = styled.div`
+export const ActionsWrapper = styled.div`
 display: flex;
-justify-content: center;
+justify-content: space-evenly;
 align-items: flex-end;
 margin-top: 1px;
 margin-top: 8px;

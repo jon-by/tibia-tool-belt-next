@@ -24,6 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.2.0",
+    "react-timer-hook": "^3.0.5",
     "react-toastify": "^9.1.2",
     "react-tooltip": "^5.10.1",
     "styled-components": "^5.3.9",

@@ -93,3 +93,13 @@ export const TIMED_ITENS = [
     vocation: ["ms", "ek", "ed","rp"],
   },
 ];
+
+
+export const DEFAULT_CONFIG = {
+  useNotification: false,
+  useSound: true,
+  autoRenew: true,
+  warningTime: 0,
+  autoRenewTime: 0,
+  renewDelay: 5,
+};

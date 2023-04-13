@@ -6,7 +6,7 @@ import { darken } from "polished"
 import { motion } from "framer-motion"
 
 type buttonProps = {
-    padding: string | boolean
+    padding: string
 }
 export const ButtonStyled = styled(motion.button)<buttonProps>`
     cursor: pointer;

@@ -11,7 +11,7 @@ import {
   FiltersWrapper,
   FilterList,
   FilterItem,
-  ClearButtonWrapper,
+  ActionsWrapper,
 } from "./chooseItens.styled";
 import Toggle from "../toggle/Toggle";
 import Button from "../button/Button";
@@ -20,8 +20,14 @@ type chooseItensProps = {
   usingItens: string[];
   addItem: (itemId: string) => void;
   setUsingItens: ([]) => void;
+  setShowChooseItens: () => void;
 };
-const ChooseItens = ({ usingItens, addItem, setUsingItens }: chooseItensProps) => {
+const ChooseItens = ({
+  usingItens,
+  addItem,
+  setUsingItens,
+  setShowChooseItens
+}: chooseItensProps) => {
   const { t } = useTranslation("itens-timer");
 
   const [filtered, setFiltered] = useState(TIMED_ITENS);
@@ -36,7 +42,7 @@ const ChooseItens = ({ usingItens, addItem, setUsingItens }: chooseItensProps) =
   function handleClear() {
     setFilter({ ...filter, ek: false, ed: false, ms: false, rp: false });
     setFiltered(TIMED_ITENS);
-    setUsingItens([])
+    setUsingItens([]);
   }
 
   useEffect(() => {
@@ -90,9 +96,13 @@ const ChooseItens = ({ usingItens, addItem, setUsingItens }: chooseItensProps) =
             />
           </FilterItem>
         </FilterList>
-        <ClearButtonWrapper>
+        <ActionsWrapper>
           <Button content={`${t("clear")}`} handleClick={handleClear} />
-        </ClearButtonWrapper>
+          <Button
+            content={`${t("done")}`}
+            handleClick={() => setShowChooseItens()}
+          />
+        </ActionsWrapper>
       </FiltersWrapper>
 
       <Itens>

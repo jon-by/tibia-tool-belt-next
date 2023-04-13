@@ -1,4 +1,24 @@
 {
-    "chooseItens": "Escolha seus itens",
-    "clear": "Limpar"
+  "chooseItens": "Escolha seus itens",
+  "clear": "Limpar",
+  "chooseAtLeastOne": "Escolha pelo menos 1 item",
+  "startAll": "Iniciar todos",
+  "pauseAll": "Pausar todos",
+  "restartAll": "Reiniciar todos",
+  "speechNotSuported": "Seu navegador não suporta fala.",
+  "renewing": "Renovando {{name}}",
+  "notificationDenied": "As notificações estão desabilitadas para nosso site, habilite-as para poder usá-las",
+  "notifyWillExpire": "Vai expirar em {{seconds}} segundos",
+  "expired": "expirou",
+  "clickToRenew": "Clique aqui para renovar",
+  "notification": "Notificação",
+  "test": "Testar",
+  "autoRenew": "Auto Renovar",
+  "autoRenewToolTip": "Reinicia o timer automaticamente",
+  "autoRenewAfter": "após {{seconds}} segundos",
+  "alert": "Alertar",
+  "minBeforeEnd": "min antes do fim",
+  "autoRenewWith": "Auto renovar com",
+  "secondsOfDelay": "segundos de delay", 
+  "done": "Pronto"
 }
