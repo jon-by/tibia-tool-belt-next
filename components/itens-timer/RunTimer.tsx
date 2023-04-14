@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import Button from "../button/Button";
 
-import { ArrowLeft, Pause, Play, RestartIcon } from "../icons/icons";
+import { ArrowLeft, PauseIcon, Playicon, RestartIcon } from "../icons/icons";
 import { Wrapper, ItensContainer, TimerActions } from "./runTimer.styled";
 import TimedIten from "./TimedIten";
 
@@ -54,12 +54,12 @@ const RunTimer = ({
         <Button
           content={`${t("startAll")}`}
           handleClick={() => setStartAll(true)}
-          Icon={Play}
+          Icon={Playicon}
         />
         <Button
           content={`${t("pauseAll")}`}
           handleClick={() => setPauseAll(true)}
-          Icon={Pause}
+          Icon={PauseIcon}
         />
         <Button
           content={`${t("restartAll")}`}

@@ -5,7 +5,7 @@ import { useTimer } from "react-timer-hook";
 import Toggle from "../toggle/Toggle";
 import { useTranslation } from "next-i18next";
 import ChangeTimeInput from "./ChangeTimeInput";
-import { Pause, Play, RestartIcon } from "../icons/icons";
+import { ConfigIcon, PauseIcon, Playicon, RestartIcon } from "../icons/icons";
 import { DEFAULT_CONFIG, TIMED_ITENS } from "@/constants/itens-timer";
 
 import {
@@ -17,15 +17,15 @@ import {
 import {
   Item,
   ItemInfo,
-  Actions,
   TimerControl,
-  TimerWrapper,
-  ActionIten,
+  TimerWrapper, 
   PlayPause,
-  Restart,
-  RememberTimes,
-  RememberTimesItem,
+  Restart,  
+  Config,
+  ItemWrapper,
 } from "./timedIten.styled";
+import Button from "../button/Button";
+import TimerConfig from "./TimerConfig";
 
 const TimedIten = ({
   id,
@@ -83,6 +83,7 @@ const TimedIten = ({
   const [startingHours, setStartingHours] = useState(hours);
   const [startingMinutes, setStartingMinutes] = useState(minutes);
   const [startingSeconds, setStartingSeconds] = useState(seconds);
+  const [showConfig, setShowConfig] = useState(false);
 
   const [config, setConfig] = useState<defaultConfigType>(() => {
     const localConfig = localStorage.getItem(localStorageKey);
@@ -239,27 +240,7 @@ const TimedIten = ({
     });
   }
 
-  function testNotification() {
-    const permission = Notification.permission;
-
-    if (permission === "granted") {
-      notify();
-      return;
-    }
-
-    if (permission === "default") {
-      Notification.requestPermission().then((permission) => {
-        if (permission === "granted") {
-          notify();
-        }
-        return;
-      });
-    }
-
-    if (permission === "denied") {
-      toast.warn(t("notificationDenied"), { autoClose: false });
-    }
-  }
+  
 
   function handleRestart() {
     if (changed) {
@@ -367,117 +348,34 @@ const TimedIten = ({
 
   return (
     <Item>
-      <ItemInfo>
-        <img src={icon} />
-        <div>
-          {name} <EditableCountdown />
-        </div>
+      <ItemWrapper>
+        <ItemInfo>
+          <img src={icon} />
+          <div>
+            {name} <EditableCountdown />
+          </div>
+        </ItemInfo>
 
         <TimerControl>
-          <PlayPause onClick={handlePlay} className="play-pause">            
-            {isRunning ? <Pause /> : <Play />}
-          </PlayPause>
-          <Restart onClick={handleRestart}>
-            <RestartIcon />
-          </Restart>
-        </TimerControl>
-      </ItemInfo>
-      <Actions>
-        <ActionIten>
-          <span>{t("notification")}</span>
-          <Toggle
-            isActive={config.useNotification}
-            setIsActive={() =>
-              handleConfig("useNotification", !config.useNotification)
-            }
-            tooltipId={`${id}-1`}
-            tipClick={() => testNotification()}
-            tooltipContent={`${t("test")}`}
-          />
-        </ActionIten>
-        <ActionIten>
-          <span>Audio</span>
-          <Toggle
-            isActive={config.useSound}
-            setIsActive={() => handleConfig("useSound", !config.useSound)}
-            tooltipId={`${id}-2`}
-            tipClick={() => playSound({ fromTest: true })}
-            tooltipContent={`${t("test")}`}
-          />
-        </ActionIten>
-        <ActionIten>
-          <span>{t("autoRenew")}</span>
-          <Toggle
-            isActive={config.autoRenew}
-            setIsActive={() => handleConfig("autoRenew", !config.autoRenew)}
-            tooltipId={`${id}-3`}
-            tooltipContent={`${t("autoRenewToolTip")} ${
-              config.renewDelay > 0
-                ? t("autoRenewAfter", { seconds: config.renewDelay })
-                : ``
-            }`}
-          />
-        </ActionIten>
-      </Actions>
-      <RememberTimes>
-        <RememberTimesItem>
-          <span>{t("alert")}</span>
-          <div className="warning-time">
-            <input
-              type="number"
-              min={0}
-              max={5}
-              defaultValue={config.warningTime}
-              onChange={(event) =>
-                handleConfig("warning-time", Number(event.currentTarget.value))
-              }
+          <PlayPause className="play-pause">
+            <Button
+              handleClick={handlePlay}
+              Icon={isRunning ? PauseIcon : Playicon}
             />
-            {t("minBeforeEnd")}
-          </div>
-        </RememberTimesItem>
-
-        {config.autoRenew && (
-          <>
-            <RememberTimesItem>
-              <span>{t("autoRenew")}</span>
-              <div className="renew-time">
-                <input
-                  type="number"
-                  min={0}
-                  max={5}
-                  defaultValue={config.autoRenewTime}
-                  onChange={(event) =>
-                    handleConfig(
-                      "renew-time",
-                      Number(event.currentTarget.value)
-                    )
-                  }
-                />
-                {t("minBeforeEnd")}
-              </div>
-            </RememberTimesItem>
-            <RememberTimesItem>
-              <div className="renew-time">
-                {t("autoRenewWith")}
-                <input
-                  type="number"
-                  min={0}
-                  max={60}
-                  defaultValue={config.renewDelay}
-                  onChange={(event) =>
-                    handleConfig(
-                      "renew-delay",
-                      Number(event.currentTarget.value)
-                    )
-                  }
-                />
-                {t("secondsOfDelay")}
-              </div>
-            </RememberTimesItem>
-          </>
-        )}
-      </RememberTimes>
-    </Item>
+          </PlayPause>
+          <Restart>
+            <Button Icon={RestartIcon} handleClick={handleRestart} />
+          </Restart>
+          <Config>
+            <Button
+              Icon={ConfigIcon}
+              handleClick={() => setShowConfig(!showConfig)}
+            />
+          </Config>
+        </TimerControl>
+      </ItemWrapper>
+      {showConfig && <TimerConfig id={id} notify={notify} playSound={playSound} config={config} handleConfig={handleConfig}/>}
+    </Item> 
   );
 };
 

@@ -6,6 +6,7 @@ import LangContext from "@/context/LangContext";
 
 import "./globalStyles.css"
 import "react-toastify/dist/ReactToastify.css";
+import "react-tooltip/dist/react-tooltip.css";
 import { AppWrapper } from "../components/app/app.styled";
 import TopBar from "@/components/top-bar/TopBar";
 const App = ({ Component, pageProps }: AppProps) => {

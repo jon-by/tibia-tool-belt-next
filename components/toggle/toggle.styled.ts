@@ -12,14 +12,14 @@ const elasticSnapGo = keyframes`
 }
 
 100%{
-    transform: translateX(85%);
+    transform: translateX(80%);
     background-color: #17c964;
 }
 `
 
 const elasticSnapBack = keyframes`
 0%{
-    transform: translateX(85%);
+    transform: translateX(80%);
     background-color: #17c964;
 }
 100%{
@@ -35,8 +35,8 @@ type toggleWrapperProps = {
 
 
 export const ToggleWrapper = styled.div<toggleWrapperProps>`
-width: 44px;
-height: 25px;
+width: 30.5px;
+height: 18px;
 padding: 2px;
 background-color: #2b2f31;
 border: 1px solid ${lighten(.2, "#2b2f31")};
@@ -46,8 +46,8 @@ align-items: center;
 cursor: pointer;
 
 .toggle-slider{
-    height: 20px;
-    width: 20px;
+    height: 14px;
+    width: 14px;
     border-radius:  15%;
     background-color:${({ active }) => active ? COLORS.positive : toggleInactive};       
     animation: ${({ active }) => active ? elasticSnapGo : elasticSnapBack};
