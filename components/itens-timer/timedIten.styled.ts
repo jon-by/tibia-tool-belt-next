@@ -4,17 +4,26 @@ import { COLORS } from "@/constants/global";
 import { darken, lighten } from "polished";
 
 export const Item = styled.div`
-position: relative;
+  position: relative;
   min-width: 200px;  
   border: 1px solid;
   background-color: ${COLORS["timer-item-bg"]};
   border-color: ${darken(0.8, COLORS.white)};
-  margin: 4px auto;
+  margin: 4px 0;
   padding: 6px 4px;
 `;
 
 
 export const ItemWrapper = styled.div``
+
+export const RemoveItem = styled.div`
+position: absolute;
+top: 8px;
+right: 8px;
+cursor: pointer;
+z-index: 10;
+
+`
 export const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;

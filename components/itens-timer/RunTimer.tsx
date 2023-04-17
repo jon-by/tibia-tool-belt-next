@@ -10,12 +10,14 @@ type runTimerProps = {
   setShowRunTimer?: (value: boolean) => void;
   usingItens: string[];
   setShowChooseItens: (show: boolean) => void;
+  toggleItem: (id: string) => void;
 };
 
 const RunTimer = ({
   setShowRunTimer,
   usingItens,
   setShowChooseItens,
+  toggleItem,
 }: runTimerProps) => {
   const { t } = useTranslation("itens-timer");
 
@@ -43,6 +45,7 @@ const RunTimer = ({
                 setPauseAll,
                 restartAll,
                 setRestartAll,
+                toggleItem
               }}
               key={id}
               id={id}

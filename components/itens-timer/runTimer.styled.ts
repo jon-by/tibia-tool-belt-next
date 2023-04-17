@@ -12,7 +12,7 @@ display: flex;
 max-width: 832px;
 flex-wrap: wrap;
 justify-content: center;
-gap: 16px;
+gap: 8px;
 font-size: 14px; 
 `
 

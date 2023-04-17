@@ -18,13 +18,13 @@ import Button from "../button/Button";
 
 type chooseItensProps = {
   usingItens: string[];
-  addItem: (itemId: string) => void;
+  toggleItem: (itemId: string) => void;
   setUsingItens: ([]) => void;
   setShowChooseItens: () => void;
 };
 const ChooseItens = ({
   usingItens,
-  addItem,
+  toggleItem,
   setUsingItens,
   setShowChooseItens
 }: chooseItensProps) => {
@@ -109,7 +109,7 @@ const ChooseItens = ({
         {filtered.map((item) => {
           return (
             <Item
-              onClick={() => addItem(item.id)}
+              onClick={() => toggleItem(item.id)}
               whileHover={{
                 scale: 1.02,
                 transition: {},

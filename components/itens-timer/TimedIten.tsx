@@ -5,7 +5,13 @@ import { useTimer } from "react-timer-hook";
 import Toggle from "../toggle/Toggle";
 import { useTranslation } from "next-i18next";
 import ChangeTimeInput from "./ChangeTimeInput";
-import { ConfigIcon, PauseIcon, Playicon, RestartIcon } from "../icons/icons";
+import {
+  Closeicon,
+  ConfigIcon,
+  PauseIcon,
+  Playicon,
+  RestartIcon,
+} from "../icons/icons";
 import { DEFAULT_CONFIG, TIMED_ITENS } from "@/constants/itens-timer";
 
 import {
@@ -18,11 +24,12 @@ import {
   Item,
   ItemInfo,
   TimerControl,
-  TimerWrapper, 
+  TimerWrapper,
   PlayPause,
-  Restart,  
+  Restart,
   Config,
   ItemWrapper,
+  RemoveItem,
 } from "./timedIten.styled";
 import Button from "../button/Button";
 import TimerConfig from "./TimerConfig";
@@ -35,6 +42,7 @@ const TimedIten = ({
   setPauseAll,
   startAll,
   setStartAll,
+  toggleItem,
 }: timedItemProps) => {
   const [sound, setSound] = useState(() => {
     const sound = new Audio("/sounds/double-beep-tone-alert.wav");
@@ -240,8 +248,6 @@ const TimedIten = ({
     });
   }
 
-  
-
   function handleRestart() {
     if (changed) {
       const expiryTimestamp = new Date();
@@ -318,7 +324,7 @@ const TimedIten = ({
   }, [minutes]);
 
   const EditableCountdown = () => {
-    return isRunning ? (
+    return isRunning  ? (
       <TimerWrapper className="editable-timer">
         {hours > 0 ? `${hours}:` : ""}
         {minutes}:{seconds === 0 ? "00" : seconds}
@@ -349,6 +355,9 @@ const TimedIten = ({
   return (
     <Item>
       <ItemWrapper>
+        <RemoveItem onClick={() => toggleItem(id)}>          
+          <Closeicon />
+        </RemoveItem>
         <ItemInfo>
           <img src={icon} />
           <div>
@@ -374,8 +383,19 @@ const TimedIten = ({
           </Config>
         </TimerControl>
       </ItemWrapper>
-      {showConfig && <TimerConfig id={id} notify={notify} playSound={playSound} config={config} handleConfig={handleConfig}/>}
-    </Item> 
+      {showConfig && (
+        <TimerConfig
+          id={id}
+          notify={notify}
+          playSound={playSound}
+          config={config}
+          handleConfig={handleConfig} 
+          setShowConfig={setShowConfig}
+          name={name}
+          icon={icon}
+        />
+      )}
+    </Item>
   );
 };
 

@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import { toast } from "react-toastify";
 import ChooseItens from "./ChooseItens";
 import RunTimer from "./RunTimer";
+import ItensTimerIntroduction from "./ItensTimerIntroduction";
 
 const atLeastOneId = "choose-at-least-one";
 
@@ -14,7 +15,7 @@ const ItensTimer = () => {
 
   const { t } = useTranslation("itens-timer");
 
-  function addItem(itemId: string) {
+  function toggleItem(itemId: string) {
     const arr = [...usingItens];
     const itemIndex = arr.indexOf(itemId);
     itemIndex === -1 ? arr.push(itemId) : arr.splice(itemIndex, 1);
@@ -44,17 +45,28 @@ const ItensTimer = () => {
     }
   }, [usingItens]);
 
-  
-  return usingItens.length > 0 && !showChooseItens ? (
-    <RunTimer setShowChooseItens={setShowChooseItens} usingItens={usingItens} />
-  ) : (
-    <ChooseItens
-      addItem={addItem}
-      setUsingItens={setUsingItens}
-      usingItens={usingItens}
-      setShowChooseItens={handleChooseItens}
-    />
-  );
+  switch (true) {
+    case usingItens.length === 0 && !showChooseItens:
+      return <ItensTimerIntroduction setShowChooseItens={setShowChooseItens} />;
+    case showChooseItens:
+      return (
+        <ChooseItens
+          toggleItem={toggleItem}
+          setUsingItens={setUsingItens}
+          usingItens={usingItens}
+          setShowChooseItens={handleChooseItens}
+        />
+      );
+
+    default:
+      return (
+        <RunTimer
+          toggleItem={toggleItem}
+          setShowChooseItens={setShowChooseItens}
+          usingItens={usingItens}
+        />
+      );
+  }
 };
 
 export default ItensTimer;

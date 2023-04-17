@@ -14,6 +14,7 @@ export type timedItemProps = {
   setStartAll: (value: boolean) => void;
   setPauseAll: (value: boolean) => void;
   setRestartAll: (value: boolean) => void;
+  toggleItem: (id: string) => void;
 };
 
 export type defaultConfigType = {

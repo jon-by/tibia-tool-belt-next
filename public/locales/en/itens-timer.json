@@ -20,7 +20,9 @@
   "minBeforeEnd": "min before end",
   "autoRenewWith": "Auto renew with",
   "secondsOfDelay": "seconds of delay",
-  "done": "Done"
+  "done": "Done",
+  "neverLooseTrackAgain": "Never lose track again",
+  "itensTimerMessage":"With the Items Timer you can choose when you will be notified, so you don't forget to renew or remove the item."
   
   
 }

@@ -20,5 +20,7 @@
   "minBeforeEnd": "min antes do fim",
   "autoRenewWith": "Auto renovar com",
   "secondsOfDelay": "segundos de delay", 
-  "done": "Pronto"
+  "done": "Pronto", 
+  "neverLooseTrackAgain": "Nunca mais se perca no tempo",
+  "itensTimerMessage":"Com o Itens Timer você pode escolher quando será avisado, assim você não esquece de renovar ou remover o item."
 }

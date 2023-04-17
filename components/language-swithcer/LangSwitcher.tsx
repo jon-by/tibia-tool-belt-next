@@ -32,7 +32,7 @@ const LangSwitcher = () => {
         onClick={() => setIsOpen()}
       >
         <>
-          <LanguageSwitcherIcon />
+          <LanguageSwitcherIcon width={20} heigth={20} />
           {LANGUAGES.find((l) => l.code === lang)?.title}
         </>
       </CurrentWrapper>
