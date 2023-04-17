@@ -532,7 +532,7 @@ postcss@8.4.14:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-react-dom@^18.0.0, react-dom@^18.2.0, "react-dom@>= 16.8.0", react-dom@>=16, react-dom@>=16.14.0, react-dom@>=16.8.0, react-dom@18.2.0:
+"react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", react-dom@^18.0.0, react-dom@^18.2.0, "react-dom@>= 16.8.0", react-dom@>=16, react-dom@>=16.14.0, react-dom@>=16.8.0, react-dom@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -553,10 +553,19 @@ react-is@^16.7.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-"react-is@>= 16.8.0":
+react-is@^18.2.0, "react-is@>= 16.8.0":
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-loader-spinner@^5.3.4:
+  version "5.3.4"
+  resolved "https://registry.npmjs.org/react-loader-spinner/-/react-loader-spinner-5.3.4.tgz"
+  integrity sha512-G2vw4ssX+RDZ/vfaeva06yfNqyFViv/u+tVZ3kFLy5TKNlNx2DbuwreBSpRtPespQA+VxinxUJsigwLwG9erOg==
+  dependencies:
+    react-is "^18.2.0"
+    styled-components "^5.3.5"
+    styled-tools "^1.7.2"
 
 react-timer-hook@^3.0.5:
   version "3.0.5"
@@ -578,7 +587,7 @@ react-tooltip@^5.10.1:
     "@floating-ui/dom" "^1.0.0"
     classnames "^2.3.0"
 
-react@^18.0.0, react@^18.2.0, "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>= 17.0.2", react@>=16, react@>=16.14.0, react@>=16.8.0, react@18.2.0:
+"react@^16.0.0 || ^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>= 17.0.2", react@>=16, react@>=16.14.0, react@>=16.8.0, react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
@@ -607,7 +616,7 @@ source-map-js@^1.0.2:
   resolved "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
-styled-components@^5.3.9, "styled-components@>= 2":
+styled-components@^5.3.5, styled-components@^5.3.9, "styled-components@>= 2":
   version "5.3.9"
   resolved "https://registry.npmjs.org/styled-components/-/styled-components-5.3.9.tgz"
   integrity sha512-Aj3kb13B75DQBo2oRwRa/APdB5rSmwUfN5exyarpX+x/tlM/rwZA2vVk2vQgVSP6WKaZJHWwiFrzgHt+CLtB4A==
@@ -629,6 +638,11 @@ styled-jsx@5.1.1:
   integrity sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==
   dependencies:
     client-only "0.0.1"
+
+styled-tools@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.npmjs.org/styled-tools/-/styled-tools-1.7.2.tgz"
+  integrity sha512-IjLxzM20RMwAsx8M1QoRlCG/Kmq8lKzCGyospjtSXt/BTIIcvgTonaxQAsKnBrsZNwhpHzO9ADx5te0h76ILVg==
 
 supports-color@^5.3.0, supports-color@^5.5.0:
   version "5.5.0"
