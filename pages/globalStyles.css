@@ -9,6 +9,7 @@ body{
     color: #EAEEFF;
     font-size: .9rem; 
     font-family: sans-serif;  
+    overflow: hidden;
 }
 
 ul, li{

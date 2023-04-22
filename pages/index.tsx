@@ -1,9 +1,8 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import AnimatedComponent from "@/components/animated-component/AnimatedComponent";
 //import { Poppins } from "next/font/google";
-import TopBar from "@/components/top-bar/TopBar";
-import { ComponentsWrapper } from "@/components/app/app.styled";
 import { useTranslation } from "next-i18next";
 
 type Props = {};
@@ -14,13 +13,13 @@ type homeProps = {
 export default function Home(_props: homeProps) {
   const { t } = useTranslation("tags");
   return (
-    <ComponentsWrapper>
+    <AnimatedComponent>
       <Head>
         <title>Tibia Tool Belt</title>
         <meta property="og:title" content="Tibia Tool Belt" key="title" />
         <meta name="description" content={`${t("home-description")}`} />
       </Head>          
-    </ComponentsWrapper>
+    </AnimatedComponent>
   );
 }
 
