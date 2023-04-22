@@ -15,7 +15,6 @@ import { charDataType, onlinePlayerType } from "./@types/partyFinder";import { t
 
 import Button from "../button/Button";
 import { InformationIcon, RestartIcon } from "../icons/icons";
-import { Tooltip } from "react-tooltip";
 
 const PartyFinder = () => {
   const [charName, setCharName] = useState("");
@@ -88,11 +87,7 @@ const PartyFinder = () => {
   return (
     <Wrapper>
       <TitleWrapper>
-        <h1>Party Finder</h1>
-        <InformationIconWrapper id="party-finder-tip">
-          <InformationIcon />
-        </InformationIconWrapper>
-        <Tooltip style={{width: "95%", textAlign: "center", fontWeight: "bolder"}} anchorId="party-finder-tip">{t("partyFinderToolTip")}</Tooltip>
+        <h1>Party Finder</h1>               
       </TitleWrapper>
       <InputsWrapper>
         <Input
