@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import {
   MenuWrapper,
   Content,
@@ -33,19 +33,24 @@ const menuOptions = [
     icon: "/images/party-finder/search-player.svg",
     url: "/party-finder",
   },
+  {
+    title: "Imbuiments",
+    icon: "/images/party-finder/search-player.svg",
+    url: "/imbuiments-page",
+  },
 ];
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   function handleChange() {
     setIsOpen(!isOpen);
   }
 
-  useEffect(()=>{
-    setIsOpen(false)
-  },[router.pathname])
+  useEffect(() => {
+    setIsOpen(false);
+  }, [router.pathname]);
 
   return (
     <MenuWrapper>
@@ -83,7 +88,10 @@ const Menu = () => {
                       }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <NavLinkStyled active={router.pathname === menuOption.url? 1:0} href={menuOption.url}>
+                      <NavLinkStyled
+                        active={router.pathname === menuOption.url ? 1 : 0}
+                        href={menuOption.url}
+                      >
                         <Content>
                           <ImageWrapper>
                             <img src={menuOption.icon} alt={menuOption.title} />

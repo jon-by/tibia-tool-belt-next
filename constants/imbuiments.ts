@@ -152,7 +152,7 @@ export const IMBUIMENTS_DATA = {
     },
     {
       name: "Void",
-      icon: "/images/imbuiments/void/Vibrancy.gif",
+      icon: "/images/imbuiments/void/Void.gif",
       itens: [
         {
           name: "Rope Belt",
