@@ -7,14 +7,14 @@ type animatedComponentProps = {
 const AnimatedComponent = ({ children }: animatedComponentProps) => {
   return (
     <Wrapper
-      initial={{ x: 300, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 300, opacity: 0 }}
+      initial={{ x: -50, opacity: 1 }}
+      animate={{ x: 0 }}
       transition={{
         type: "spring",
-        stiffness: 260,
-        damping: 20,
+        bounce: 0.2,
+        duration: .3,        
       }}
+      exit={{ x: -50, opacity: 0 }}
     >
       {children}
     </Wrapper>
