@@ -5,7 +5,7 @@ import { COLORS } from '../../constants/global'
 
 export const MenuWrapper = styled.div`
 position: relative;
-z-index: 10;
+z-index: 20;
 `
 
 export const NavM = styled(motion.nav)`   

@@ -9,7 +9,7 @@ body{
     color: #EAEEFF;
     font-size: .9rem; 
     font-family: sans-serif;  
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 ul, li{

@@ -1,19 +1,18 @@
-import { IMBUIMENTS_DATA } from "@/constants/imbuiments";
 
+export type type = "basic" | "intricate" | "powerful";
 
-export type imbuimentTitle = keyof typeof IMBUIMENTS_DATA
+export type iten = {
+  name: string;
+  qtty: number;
+  icon: string;
+  type: type;
+  amount: number;
+  chance: null | number;
+};
 
 export type imbuimentData = {
   name: string;
   icon: string;
-  itens: [
-    {
-      name: string;
-      qtty: number;
-      icon: string;
-      type: string;
-      amount: number;
-      chance: null | number;
-    }
-  ];
-}[];
+  category: "support" | "elemental protection";
+  itens: iten[];
+};

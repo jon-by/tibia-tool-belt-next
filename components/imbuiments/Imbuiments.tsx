@@ -1,29 +1,46 @@
 import React from "react";
 
 import { IMBUIMENTS_DATA } from "@/constants/imbuiments";
-import { imbuimentData, imbuimentTitle } from "./@types/imbuiments";
-import Image from "next/image";
 
-type imbuitype = string;
 
+import { Wrapper, ItensWrapper, ImbuimentWrapper, ImbuimentsItensWrapper } from "./Imbuiments.styled";
+import ImbuimentIten from "./ImbuimentIten";
 const Imbuiments = () => {
   return (
-    <div>
-      {Object.keys(IMBUIMENTS_DATA).map((imbuimentType) => {
-        type imbuitype = keyof typeof IMBUIMENTS_DATA;
-        const itensData = IMBUIMENTS_DATA[imbuimentType as imbuimentTitle] as imbuimentData;
+    <Wrapper>
+      <ItensWrapper>
+        <h2>Support</h2>
+        {IMBUIMENTS_DATA.filter(imbuiment => imbuiment.category === "support").map(suportImbuiments => {
+          return <ImbuimentWrapper bgImage={suportImbuiments.icon}>
+            <h3>{suportImbuiments.name}</h3>
 
-        console.log({ itensData })
-        return (
-          <div>
-            <h2>{imbuimentType}</h2>
-            <div>{itensData.map(item => {
-              return <div>{item.name} <Image alt={item.name} src={item.icon} width={64} height={64} /></div>
-            })}</div>
-          </div>
-        );
-      })}
-    </div>
+            <ImbuimentsItensWrapper>
+              {suportImbuiments.itens.map(iten => {
+                return <ImbuimentIten iten={iten} />
+              })}
+
+            </ImbuimentsItensWrapper>
+          </ImbuimentWrapper>
+        })}
+      </ItensWrapper>
+
+      <ItensWrapper>
+        <h2>Elemental Protection</h2>
+        {IMBUIMENTS_DATA.filter(imbuiment => imbuiment.category === "elemental protection").map(protectionImbuiments => {
+          return <ImbuimentWrapper bgImage={protectionImbuiments.icon}>
+            <h3>{protectionImbuiments.name}</h3>
+
+            <ImbuimentsItensWrapper>
+              {protectionImbuiments.itens.map(iten => {
+                return <ImbuimentIten iten={iten} />
+              })}
+
+            </ImbuimentsItensWrapper>
+          </ImbuimentWrapper>
+        })}
+      </ItensWrapper>
+
+    </Wrapper>
   );
 };
 
