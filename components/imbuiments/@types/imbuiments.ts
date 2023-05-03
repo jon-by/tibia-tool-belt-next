@@ -13,6 +13,6 @@ export type iten = {
 export type imbuimentData = {
   name: string;
   icon: string;
-  category: "support" | "elemental protection";
+  category: "support" | "elemental protection"| "skill"| "elemental damage";
   itens: iten[];
 };

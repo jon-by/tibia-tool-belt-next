@@ -40,6 +40,38 @@ const Imbuiments = () => {
         })}
       </ItensWrapper>
 
+      <ItensWrapper>
+        <h2>Skill</h2>
+        {IMBUIMENTS_DATA.filter(imbuiment => imbuiment.category === "skill").map(skillImbuiments => {
+          return <ImbuimentWrapper bgImage={skillImbuiments.icon}>
+            <h3>{skillImbuiments.name}</h3>
+
+            <ImbuimentsItensWrapper>
+              {skillImbuiments.itens.map(iten => {
+                return <ImbuimentIten iten={iten} />
+              })}
+
+            </ImbuimentsItensWrapper>
+          </ImbuimentWrapper>
+        })}
+      </ItensWrapper>
+
+      <ItensWrapper>
+        <h2>Elemental Damage</h2>
+        {IMBUIMENTS_DATA.filter(imbuiment => imbuiment.category === "elemental damage").map(damageImbuiment => {
+          return <ImbuimentWrapper bgImage={damageImbuiment.icon}>
+            <h3>{damageImbuiment.name}</h3>
+
+            <ImbuimentsItensWrapper>
+              {damageImbuiment.itens.map(iten => {
+                return <ImbuimentIten iten={iten} />
+              })}
+
+            </ImbuimentsItensWrapper>
+          </ImbuimentWrapper>
+        })}
+      </ItensWrapper>
+
     </Wrapper>
   );
 };
