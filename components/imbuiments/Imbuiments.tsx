@@ -16,7 +16,7 @@ const Imbuiments = () => {
 
             <ImbuimentsItensWrapper>
               {suportImbuiments.itens.map(iten => {
-                return <ImbuimentIten iten={iten} />
+                return <ImbuimentIten  iten={iten} />
               })}
 
             </ImbuimentsItensWrapper>
@@ -48,7 +48,7 @@ const Imbuiments = () => {
 
             <ImbuimentsItensWrapper>
               {skillImbuiments.itens.map(iten => {
-                return <ImbuimentIten iten={iten} />
+                return <ImbuimentIten category="skill" iten={iten} />
               })}
 
             </ImbuimentsItensWrapper>

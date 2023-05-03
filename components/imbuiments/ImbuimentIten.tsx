@@ -5,10 +5,11 @@ import { iten } from './@types/imbuiments'
 
 import { IntemWrapper, ImageAndName, ImageWrapper, TypeAndAmount, QttyHolder } from './imbuimentIten.styled'
 type imbuimentItenProps = {
-    iten: iten
+    iten: iten;
+    category?: string;
 }
 
-const ImbuimentIten = ({ iten }: imbuimentItenProps) => {
+const ImbuimentIten = ({ iten, category }: imbuimentItenProps) => {
     return (
         <IntemWrapper>
             <ImageAndName>
@@ -21,7 +22,7 @@ const ImbuimentIten = ({ iten }: imbuimentItenProps) => {
                 <p>{iten.name}</p>
             </ImageAndName>
             <TypeAndAmount>
-                <p>{iten.type}: {iten.amount}%</p>
+                <p>{iten.type}: {iten.amount} {category !== "skill" && "%"}</p>
 
                 {iten.chance && <p>Chance: {iten.chance}%</p>}
             </TypeAndAmount>
