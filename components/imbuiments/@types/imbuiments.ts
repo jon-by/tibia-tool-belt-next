@@ -1,6 +1,13 @@
-
 export type type = "basic" | "intricate" | "powerful";
 
+enum category {
+  support = "support",
+  "elemental protection" = "elemental protection",
+  skill = "skill",
+  "elemental damage" = "elemental damage",
+}
+
+type vocation = "EK" | "ED" | "MS" | "RP";
 export type iten = {
   name: string;
   qtty: number;
@@ -13,6 +20,10 @@ export type iten = {
 export type imbuimentData = {
   name: string;
   icon: string;
-  category: "support" | "elemental protection"| "skill"| "elemental damage";
+  vocations: vocation[];
   itens: iten[];
+};
+
+export type imbuimentType = {
+  [key in category]: imbuimentData[];
 };

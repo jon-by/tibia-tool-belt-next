@@ -21,6 +21,7 @@ export const ItensWrapper = styled.div`
     text-align: center;
     grid-column-start: 1;
     grid-column-end: 4;
+    text-transform: capitalize;
   }
 
   @media only screen and (max-width: 860px) {
