@@ -193,6 +193,37 @@ export const IMBUIMENTS_DATA: imbuimentType = {
   ],
   skill: [
     {
+      name: "Epiphany - ML",
+      icon: "/images/imbuiments/epiphany/Epiphany.gif",
+      vocations: ["ED", "MS"],
+      itens: [
+        {
+          name: "Elvish Talisman",
+          qtty: 25,
+          icon: "/images/imbuiments/epiphany/Elvish_Talisman.gif",
+          type: "basic",
+          amount: 1,
+          chance: null,
+        },
+        {
+          name: "Broken Shamanic Staff",
+          qtty: 15,
+          icon: "/images/imbuiments/epiphany/Broken_Shamanic_Staff.gif",
+          type: "intricate",
+          amount: 2,
+          chance: null,
+        },
+        {
+          name: "Strand of Medusa Hair",
+          qtty: 15,
+          icon: "/images/imbuiments/epiphany/Strand_of_Medusa_Hair.gif",
+          type: "powerful",
+          amount: 4,
+          chance: null,
+        },
+      ],
+    },
+    {
       name: "Bash - Club",
       icon: "/images/imbuiments/bash/Bash.gif",
       vocations: ["EK"],
@@ -285,37 +316,7 @@ export const IMBUIMENTS_DATA: imbuimentType = {
         },
       ],
     },
-    {
-      name: "Epiphany - ML",
-      icon: "/images/imbuiments/epiphany/Epiphany.gif",
-      vocations: ["ED", "MS"],
-      itens: [
-        {
-          name: "Elvish Talisman",
-          qtty: 25,
-          icon: "/images/imbuiments/epiphany/Elvish_Talisman.gif",
-          type: "basic",
-          amount: 1,
-          chance: null,
-        },
-        {
-          name: "Broken Shamanic Staff",
-          qtty: 15,
-          icon: "/images/imbuiments/epiphany/Broken_Shamanic_Staff.gif",
-          type: "intricate",
-          amount: 2,
-          chance: null,
-        },
-        {
-          name: "Strand of Medusa Hair",
-          qtty: 15,
-          icon: "/images/imbuiments/epiphany/Strand_of_Medusa_Hair.gif",
-          type: "powerful",
-          amount: 4,
-          chance: null,
-        },
-      ],
-    },
+
     {
       name: "Precision - Distance",
       icon: "/images/imbuiments/precision/Precision.gif",

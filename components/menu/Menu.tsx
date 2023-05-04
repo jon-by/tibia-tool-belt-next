@@ -15,27 +15,27 @@ import MenuToggle from "./MenuToggle";
 const menuOptions = [
   {
     title: "Home",
-    icon: "/images/home/home.svg",
+    icon: "/images/home/Sneaky_Stabber_of_Eliteness-icon.gif",
     url: "/",
   },
   {
     title: "Loot Spliter",
-    icon: "/images/loot-spliter/loot-spliter.svg",
+    icon: "/images/loot-spliter/Crystal_Coin-icon.gif",
     url: "/loot-spliter",
   },
   {
     title: "Itens Timer",
-    icon: "/images/itens-timer/timer-alert-outline.svg",
+    icon: "/images/itens-timer/Watch-icon.gif",
     url: "/itens-timer",
   },
   {
     title: "Party Finder",
-    icon: "/images/party-finder/search-player.svg",
+    icon: "/images/party-finder/Telescope-icon.gif",
     url: "/party-finder",
   },
   {
     title: "Imbuiments",
-    icon: "/images/party-finder/search-player.svg",
+    icon: "/images/imbuiments/imbuiment-icon.gif",
     url: "/imbuiments-page",
   },
 ];

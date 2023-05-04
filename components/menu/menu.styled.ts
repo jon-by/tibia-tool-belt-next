@@ -22,12 +22,12 @@ border-radius: 10px;
 }
 
 ul{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: row;
+display:grid;
+grid-template-columns: 1fr 1fr 1fr;
+
+
 gap: 16px;
-flex-wrap: wrap;
+
 }
 `
 
@@ -61,7 +61,8 @@ align-items: center;
 
 `
 export const ImageWrapper = styled.div`
-max-width: 30px;
+max-width: 50px;
+min-height: 50px;
 display: flex;
 justify-content: center;
 align-items: center;
