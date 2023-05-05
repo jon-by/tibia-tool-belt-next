@@ -4,13 +4,14 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AnimatedComponent from "@/components/animated-component/AnimatedComponent";
 //import { Poppins } from "next/font/google";
 import { useTranslation } from "next-i18next";
+import Home from "@/components/home/Home";
 
 type Props = {};
 
 type homeProps = {
   _props: InferGetStaticPropsType<typeof getStaticProps>;
 };
-export default function Home(_props: homeProps) {
+export default function HomePage(_props: homeProps) {
   const { t } = useTranslation("tags");
   return (
     <AnimatedComponent>
@@ -18,7 +19,8 @@ export default function Home(_props: homeProps) {
         <title>Tibia Tool Belt</title>
         <meta property="og:title" content="Tibia Tool Belt" key="title" />
         <meta name="description" content={`${t("home-description")}`} />
-      </Head>          
+      </Head> 
+      <Home/>        
     </AnimatedComponent>
   );
 }

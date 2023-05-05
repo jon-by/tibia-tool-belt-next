@@ -19,3 +19,31 @@ export const LANGUAGES = [
 
 
 export const USING_ITENS_LOCAL_KEY = "using-itens-local"
+
+export const MENU_OPTIONS = [
+    {
+      title: "Home",
+      icon: "/images/home/Sneaky_Stabber_of_Eliteness-icon.gif",
+      url: "/",
+    },
+    {
+      title: "Loot Spliter",
+      icon: "/images/loot-spliter/Crystal_Coin-icon.gif",
+      url: "/loot-spliter",
+    },
+    {
+      title: "Itens Timer",
+      icon: "/images/itens-timer/Watch-icon.gif",
+      url: "/itens-timer",
+    },
+    {
+      title: "Party Finder",
+      icon: "/images/party-finder/Telescope-icon.gif",
+      url: "/party-finder",
+    },
+    {
+      title: "Imbuiments",
+      icon: "/images/imbuiments/imbuiment-icon.gif",
+      url: "/imbuiments",
+    },
+  ];
