@@ -32,7 +32,6 @@ gap: 16px;
 `
 
 export const MenuItens = styled.ul` 
-
     &>div{
         display: flex;
         justify-content: center;

@@ -25,25 +25,31 @@ export const MENU_OPTIONS = [
       title: "Home",
       icon: "/images/home/Sneaky_Stabber_of_Eliteness-icon.gif",
       url: "/",
+      description:"home-description"
     },
     {
       title: "Loot Spliter",
       icon: "/images/loot-spliter/Crystal_Coin-icon.gif",
       url: "/loot-spliter",
+      description:"loot-spliter"
     },
     {
       title: "Itens Timer",
       icon: "/images/itens-timer/Watch-icon.gif",
       url: "/itens-timer",
+      description:"itens-timer-description"
     },
     {
       title: "Party Finder",
       icon: "/images/party-finder/Telescope-icon.gif",
       url: "/party-finder",
+      description:"party-finder"
+      
     },
     {
       title: "Imbuiments",
       icon: "/images/imbuiments/imbuiment-icon.gif",
       url: "/imbuiments",
+      description:"imbuiments"
     },
   ];

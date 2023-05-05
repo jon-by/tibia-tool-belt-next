@@ -18,6 +18,7 @@ align-items: center;
 `
 
 export const ChooseLangM = styled(motion.div)`
+z-index: 10;
 display: flex;
 flex-direction: column;
 justify-content: center;
