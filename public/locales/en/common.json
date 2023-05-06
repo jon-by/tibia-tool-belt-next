@@ -3,6 +3,7 @@
     "copyToClipboardMessage": "Copied to clipboard",
     "imageCopiedMessage": "Image copied CTRL + V to send it",
     "copyToImageError": "error copying image, please try again",
-    "copyAsImage": "Copy as image"
+    "copyAsImage": "Copy as image",
+    "made-by": "made by"
     
 }

@@ -4,12 +4,17 @@
     box-sizing: border-box;
 }
 
+html, body, #__next{
+    height: 100%;
+}
+
 body{
     background-color: #1f2029;
     color: #EAEEFF;
     font-size: .9rem; 
     font-family: sans-serif;  
     overflow-x: hidden;
+    height: 100%;
 }
 
 ul, li{

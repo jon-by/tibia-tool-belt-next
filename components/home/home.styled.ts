@@ -1,19 +1,28 @@
 import { COLORS } from "@/constants/global";
 import styled from "styled-components";
 
-export const HomeContainer = styled.ul`
+
+export const HomeContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`
+
+export const HomeItens = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 16px;
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 32px;
 
   @media only screen and (max-width: 1300px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1000px) {
     grid-template-columns: 1fr 1fr;
   }
 

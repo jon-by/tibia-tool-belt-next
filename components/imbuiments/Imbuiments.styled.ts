@@ -1,19 +1,56 @@
 import { COLORS } from "@/constants/global";
 import styled from "styled-components";
 
+export const ImbuimentsContainer = styled.div`
+height: 100%;
+overflow: auto;
+max-height: 700px;
+padding: 32px;
+text-align: center;
+
+border-radius: 5px;
+&::-webkit-scrollbar {
+    width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+ 
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    background: #888;
+ 
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+   
+    }
+
+h1{
+  margin-bottom: 32px;
+}
+`
+
 export const Wrapper = styled.div`
-  display: flex;
+  
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 24px;
-  max-width: 1100px;
+  
+  
 `;
 
 export const ItensWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; 
   gap: 16px;
+ 
 
   h2 {
     width: 100%;
