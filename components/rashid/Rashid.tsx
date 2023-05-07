@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RashidWrapper } from "./rashid.styled";
 
 const rashidPossibleLocations = {
@@ -12,22 +13,26 @@ const rashidPossibleLocations = {
   6: "Edron",
 };
 
-type rashidProps = {
-  city?: string;
-};
-const Rashid = ({ city }: rashidProps) => {
-  const date = new Date();
-  const today = date.getDay();
+type rashidLocationType = keyof typeof rashidPossibleLocations
 
-  let rashidLocation = null;
+const Rashid = () => {
 
-  city
-    ? (rashidLocation = city)
-    : rashidPossibleLocations[today as keyof typeof rashidPossibleLocations];
+  var todayBerlin = new Date().toLocaleString("en-US", {
+    timeZone: "Europe/Berlin"
+  });
 
-  useEffect(() => {
-    console.log({ city });
-  }, []);
+  const today = new Date(todayBerlin);
+  const day = today.getDay()
+  const hour = 8
+
+  let rashidLocation = ""
+
+  if (hour > 9) {
+    rashidLocation = rashidPossibleLocations[day as rashidLocationType]
+  } else {
+    const yesterday = day - 1 === -1 ? 6 : day
+    rashidLocation = rashidPossibleLocations[yesterday as rashidLocationType]
+  }
 
   return (
     <RashidWrapper>
@@ -39,19 +44,4 @@ const Rashid = ({ city }: rashidProps) => {
 
 export default Rashid;
 
-export async function getStaticProps() {
-  let city = null;
 
-  try {
-    const rawCity = await fetch("https://api.tibialabs.com/v2/rashid/city");
-    const parsedCity = await rawCity.text();
-
-    city = parsedCity;
-  } catch (error) {
-    console.log(error);
-  }
-
-  return {
-      city ,
-  };
-}
