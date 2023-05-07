@@ -1,6 +1,5 @@
-import dynamic from "next/dynamic";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { RashidWrapper } from "./rashid.styled";
 
 const rashidPossibleLocations = {
@@ -23,7 +22,7 @@ const Rashid = () => {
 
   const today = new Date(todayBerlin);
   const day = today.getDay()
-  const hour = 8
+  const hour = today.getHours()
 
   let rashidLocation = ""
 
