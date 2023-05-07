@@ -52,7 +52,7 @@ type RashidProps = {
   rashidLocation: string;
 }
 
-const Rashid = ({ rashidLocation }: RashidProps) => {
+const Rashid = ({ rashidLocation }: any) => {
   return (
     <RashidWrapper>
       <Image src="/images/Rashid.gif" width={64} height={64} alt="Rashid" />
