@@ -12,10 +12,8 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-
       <Rashid />
-
-      <p>{date.getFullYear()} Tibia Tool Belt | {t("made-by")} <StyledLink href="https://github.com/jon-by"> jon-by <GithubIcon width={24} heigth={24}/></StyledLink></p>
+      <p>{date.getFullYear()} Tibia Tool Belt | {t("made-by")} <StyledLink target="_blank" href="https://github.com/jon-by"> jon-by <GithubIcon width={24} heigth={24} /></StyledLink></p>
     </FooterContainer>
   )
 }

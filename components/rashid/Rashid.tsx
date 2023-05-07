@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import React from 'react'
-import { RashidWrapper } from './rashid.styled'
+import Image from "next/image";
+import React, { useEffect } from "react";
+import { RashidWrapper } from "./rashid.styled";
 
 const rashidPossibleLocations = {
   0: "Carlin",
@@ -9,20 +9,51 @@ const rashidPossibleLocations = {
   3: "Port Hope",
   4: "Ankrahmun",
   5: "Darashia",
-  6: "Edron"
+  6: "Edron",
+};
+
+type rashidProps = {
+  city: string
 }
+const Rashid = ({ city }: rashidProps) => {
+  const date = new Date();
+  const today = date.getDay();
 
-const Rashid = () => {
-  const date = new Date()
-  const today = date.getDay()
+  let rashidLocation = null
 
-  const rashidLocation = rashidPossibleLocations[today as keyof typeof rashidPossibleLocations]
+  city ? rashidLocation = city : rashidPossibleLocations[today as keyof typeof rashidPossibleLocations];
+
+
+  useEffect(() => {
+    console.log({ city })
+  }, [])
+
   return (
     <RashidWrapper>
-      <Image src="/images/Rashid.gif" width={64} height={64} alt="Rashid"/>
+      <Image src="/images/Rashid.gif" width={64} height={64} alt="Rashid" />
       {rashidLocation}
-      </RashidWrapper>
-  )
-}
+    </RashidWrapper>
+  );
+};
 
-export default Rashid
+export default Rashid;
+
+export async function getStaticProps() {
+  let city = null
+
+  try {
+    const rawCity = await fetch("https://api.tibialabs.com/v2/rashid/city")
+    const parsedCity = await rawCity.text()
+
+    city = parsedCity
+
+  } catch (error) {
+    console.log(error)
+  }
+
+  return {
+    props: {
+      city
+    },
+  };
+}
