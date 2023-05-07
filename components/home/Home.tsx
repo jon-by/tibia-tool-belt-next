@@ -16,7 +16,7 @@ const Home = () => {
         {MENU_OPTIONS.filter((menuOption) => menuOption.url !== "/").map(
           (menuOption) => {
             return (
-              <ItenWrapper>
+              <ItenWrapper key={menuOption.url}>
                 <Link href={menuOption.url}>
                   <h2>{menuOption.title}</h2>
                   <Content>

@@ -13,20 +13,21 @@ const rashidPossibleLocations = {
 };
 
 type rashidProps = {
-  city: string
-}
+  city?: string;
+};
 const Rashid = ({ city }: rashidProps) => {
   const date = new Date();
   const today = date.getDay();
 
-  let rashidLocation = null
+  let rashidLocation = null;
 
-  city ? rashidLocation = city : rashidPossibleLocations[today as keyof typeof rashidPossibleLocations];
-
+  city
+    ? (rashidLocation = city)
+    : rashidPossibleLocations[today as keyof typeof rashidPossibleLocations];
 
   useEffect(() => {
-    console.log({ city })
-  }, [])
+    console.log({ city });
+  }, []);
 
   return (
     <RashidWrapper>
@@ -39,21 +40,18 @@ const Rashid = ({ city }: rashidProps) => {
 export default Rashid;
 
 export async function getStaticProps() {
-  let city = null
+  let city = null;
 
   try {
-    const rawCity = await fetch("https://api.tibialabs.com/v2/rashid/city")
-    const parsedCity = await rawCity.text()
+    const rawCity = await fetch("https://api.tibialabs.com/v2/rashid/city");
+    const parsedCity = await rawCity.text();
 
-    city = parsedCity
-
+    city = parsedCity;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
   return {
-    props: {
-      city
-    },
+      city ,
   };
 }
