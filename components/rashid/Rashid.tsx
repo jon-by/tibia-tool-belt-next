@@ -16,7 +16,7 @@ type rashidLocationType = keyof typeof rashidPossibleLocations
 
 const Rashid = () => {
 
-  var todayBerlin = new Date().toLocaleString("en-US", {
+  const todayBerlin = new Date().toLocaleString("en-US", {
     timeZone: "Europe/Berlin"
   });
 
@@ -24,12 +24,13 @@ const Rashid = () => {
   const day = today.getDay()
   const hour = today.getHours()
 
+  console.log({day, hour})
   let rashidLocation = ""
 
   if (hour > 9) {
     rashidLocation = rashidPossibleLocations[day as rashidLocationType]
   } else {
-    const yesterday = day - 1 === -1 ? 6 : day
+    const yesterday = day - 1 === -1 ? 6 : day -1
     rashidLocation = rashidPossibleLocations[yesterday as rashidLocationType]
   }
 
