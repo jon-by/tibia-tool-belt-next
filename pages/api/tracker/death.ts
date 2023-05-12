@@ -2,25 +2,23 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { collection, getDocs } from "firebase/firestore";
 
-import db from "./_db";
-import { death } from "./@types/_tracker-type";
+import db from "./_firebase";
+import { death, onlinePlayerType } from "./@types/_tracker-type";
+
+import { getWorldByName, getOnlinePlayersByWorld } from "./_tibiaData";
 
 type Data = {
-  name: string;
+  onlinePlayers: onlinePlayerType[] ;
 };
 
+
+
+
 async function getDeaths(res: NextApiResponse<Data>) {
-  const querySnapshot = await getDocs(collection(db, "kalibra"));
-  querySnapshot.forEach((doc) => {
-
-    const deathData = doc.data() as death
-    
-    res.status(200).json({ ...deathData});
-  });
+  const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld("Kalibra") ;  
+  
+  res.status(200).json({onlinePlayers});
 }
-
-
-
 
 export default function handler(
   req: NextApiRequest,

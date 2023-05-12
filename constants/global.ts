@@ -14,7 +14,7 @@ export const COLORS = {
 
 export const LANGUAGES = [
   { code: "en", title: "English" },
-  { code: "pt-BR", title: "Portugês" },
+  { code: "pt-BR", title: "Português" },
 ];
 
 export const USING_ITENS_LOCAL_KEY = "using-itens-local";

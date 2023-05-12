@@ -23,8 +23,7 @@ const Rashid = () => {
   const today = new Date(todayBerlin);
   const day = today.getDay()
   const hour = today.getHours()
-
-  console.log({day, hour})
+  
   let rashidLocation = ""
 
   if (hour > 9) {
