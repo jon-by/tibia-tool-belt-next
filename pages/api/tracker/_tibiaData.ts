@@ -4,6 +4,7 @@ import {
   worldType,
   onlinePlayerType,
   worldsType,
+  deathType,
 } from "./@types/_tracker-type";
 
 export async function getWorldByName(name: string): Promise<worldType> {
@@ -28,7 +29,7 @@ export async function getWorlds(): Promise<string[]> {
   return regularWorlds;
 }
 
-export async function getPlayerDeaths(wasOnline: string[]) {
+export async function getPlayerDeaths(wasOnline: string[]):Promise<deathType[]> {
   return new Promise(async (resolve, reject) => {
     try {
       const MAX_CONCURRENT_REQUESTS = 50;

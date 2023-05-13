@@ -1,8 +1,9 @@
-export type death = {
-  killer: string;
-  level: number;
-  name: string;
+export type deathType = {
   time: string;
+  name: string;
+  reason: string;
+  server: string;
+  documentId?:string
 };
 
 export type onlinePlayerType = {
@@ -67,6 +68,6 @@ export type worldsType = {
 };
 
 export type errorType = {
-  error:boolean,
-  errorMessage?:string
-}
+  error: boolean;
+  errorMessage?: string;
+};

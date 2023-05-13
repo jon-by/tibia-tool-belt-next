@@ -34,7 +34,7 @@ async function updateWorlds(req: NextApiRequest, res: NextApiResponse<Data>) {
 
   }else{
 
-    //res.status(400).json({ error: true, errorMessage:"Authentication" });
+    res.status(400).json({ error: true, errorMessage:"Authentication" });
   }
 }
 
