@@ -86,8 +86,8 @@ export async function getPlayersToCheckIfDied() {
 
     let worldsToCheck = await getWorldsToCheckDeaths()
     if (worldsToCheck.length < 1) {
-      const onlineRef = doc(db, "online-now", "online");
-      await setDoc(onlineRef, { players: [] });
+      // const onlineRef = doc(db, "online-now", "online");
+      // await setDoc(onlineRef, { players: [] });
       worldsToCheck = await getAllAworlds()
 
     }
