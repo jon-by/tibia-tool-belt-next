@@ -4,11 +4,13 @@ import db from "../_firebase";
 import { doc, setDoc } from "firebase/firestore";
 import {
   getAllAworlds,
+  getAllOnlinePlayers,
   getPlayersToCheckIfDied,
   getRegisteredDeaths,
   getWorldsToSearchOnlinePlayers,
   saveDeath,
   saveRegisteredDeaths,
+  saveWorldsToCheckDeaths,
   saveWorldsToSearchOnlinePlayers,
 } from "../_db";
 import { deathType, onlinePlayerType } from "../@types/_tracker-type";
@@ -20,43 +22,31 @@ export async function handleTrackRoutine(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let seconds = 0;
-  const interval = setInterval(() => {
-    seconds += 1;
-  }, 1000);
   try {
-    const allWorlds = await getAllAworlds();
-    //await getAndSaveDeaths();
+    const deaths = await getAndSaveDeaths();
 
-    console.log("rodou tudo");
-    res.status(200).json({ error: false, message: `in ${seconds} seconds` });
+    res.status(200).json({ error: false, deaths });
+
   } catch (error) {
-    res.status(500).json({ error: true, message: `in ${seconds} seconds` });
+    res.status(500).json({ error: true, });
   }
-  clearInterval(interval);
 }
 
 export async function getAndSaveDeaths() {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const playersToCheckDeath = await getPlayersToCheckIfDied();
 
-      const deaths = await getDeaths(playersToCheckDeath);
+  try {
+    const playersToCheckDeath = await getPlayersToCheckIfDied();
+    const deaths = await getDeaths(playersToCheckDeath.map(player => player.name));
+    await saveDeaths(deaths)
+    return deaths
+  } catch (error) {
+    console.log(error);
+    return []
+  }
 
-      console.log({ deaths });
-
-      const saved = await saveDeaths(deaths);
-
-      resolve({ error: "hue" });
-    } catch (error) {
-      console.log(error);
-      reject({ error: true });
-    }
-  });
 }
 
-async function saveDeaths(deaths: deathType[]) {
-  console.log(deaths[0]);
+async function saveDeaths(deaths: deathType[]) {  
   let alreadySaved: string[] = await getRegisteredDeaths();
 
   deaths.forEach(async (death) => {
@@ -94,7 +84,6 @@ async function getDeaths(playersToCheckDeath: string[]) {
 }
 
 export async function getAndSaveOnlinePlayers(req: NextApiRequest, res: NextApiResponse) {
-
   try {
     const authorized = await isAuthorized(req.body.password)
     if (!authorized) {
@@ -107,29 +96,37 @@ export async function getAndSaveOnlinePlayers(req: NextApiRequest, res: NextApiR
       allWorlds = await getAllAworlds()
     }
 
+    const worldsToCheck = allWorlds.splice(0, 5)
+
     let onlineList: { name: string, server: string }[] = [];
 
-    for (let i = 0; i < allWorlds.splice(0, 3).length; i++) {
-      const world = allWorlds[i];
-      if (world) {
-        const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld(
-          world
-        );
-        onlineList = onlineList.concat(
-          onlinePlayers.map((player) => {
-            return { name: player.name, server: world }
-          })
-        );
-      }
+    for (let i = 0; i < worldsToCheck.length; i++) {
+      const world = worldsToCheck[i];
+      const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld(
+        world
+      );
+      onlineList = onlineList.concat(
+        onlinePlayers.map((player) => {
+          return { name: player.name, server: world }
+        })
+      );
     }
+
+    const currentPlayers = await getAllOnlinePlayers()
+    const merged = currentPlayers.concat(onlineList)
+
+    const newPlayers = merged.reduce<{ name: string, server: string }[]>((acc, cur) => {
+      const isInArray = acc.find(player => player.name === cur.name)
+      if (!isInArray) acc.push(cur)
+
+      return acc
+    }, [])
+
     const onlineRef = doc(db, "online-now", "online");
-
-    const currentPlayers = await getPlayersToCheckIfDied()
-
-    await setDoc(onlineRef, { players:[...currentPlayers, ...onlineList]  });
+    await setDoc(onlineRef, { players: newPlayers });
     await saveWorldsToSearchOnlinePlayers(allWorlds)
 
-    res.status(200).json({ onlinePlayers: onlineList, error: false });
+    res.status(200).json({ onlinePlayers: newPlayers, error: false });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: false, errorMessage: JSON.stringify(error) });
