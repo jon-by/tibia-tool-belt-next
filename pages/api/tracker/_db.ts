@@ -15,6 +15,30 @@ export async function getAllAworlds(): Promise<string[]> {
   }
 }
 
+export async function getWorldsToSearchOnlinePlayers(): Promise<string[]> {
+  try {
+    const AllWorldsRef = doc(db, "worlds-online-players", "NvV95wtb2CF5qbOMK9oU");
+    const docSnap = await getDoc(AllWorldsRef);
+    const allWorlds = docSnap?.data()?.worlds;
+
+    return allWorlds ? allWorlds : [];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+export async function saveWorldsToSearchOnlinePlayers(worlds: string[]): Promise<boolean> {
+  try {
+    const AllWorldsRef = doc(db, "worlds-online-players", "NvV95wtb2CF5qbOMK9oU");
+    await setDoc(AllWorldsRef, { worlds });
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 export async function getRegisteredDeaths(): Promise<string[]> {
   try {
     const alreadySavedRef = doc(db, `already-in`, "deaths-added");

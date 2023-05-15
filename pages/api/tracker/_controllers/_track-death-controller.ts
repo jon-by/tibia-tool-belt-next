@@ -6,8 +6,10 @@ import {
   getAllAworlds,
   getPlayersToCheckIfDied,
   getRegisteredDeaths,
+  getWorldsToSearchOnlinePlayers,
   saveDeath,
   saveRegisteredDeaths,
+  saveWorldsToSearchOnlinePlayers,
 } from "../_db";
 import { deathType, onlinePlayerType } from "../@types/_tracker-type";
 
@@ -99,23 +101,33 @@ export async function getAndSaveOnlinePlayers(req: NextApiRequest, res: NextApiR
       res.status(401).json({ error: true, errorMessage: "Authentication" });
     }
 
-    const allWorlds = await getAllAworlds();
+    let allWorlds = await getWorldsToSearchOnlinePlayers();
+
+    if (allWorlds.length < 1) {
+      allWorlds = await getAllAworlds()
+    }
+
     let onlineList: { name: string, server: string }[] = [];
 
-    for (let i = 0; i < allWorlds.length; i++) {
+    for (let i = 0; i < allWorlds.splice(0, 3).length; i++) {
       const world = allWorlds[i];
-      const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld(
-        world
-      );
-      onlineList = onlineList.concat(
-        onlinePlayers.map((player) => {
-          return { name: player.name, server: world }
-        })
-      );
+      if (world) {
+        const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld(
+          world
+        );
+        onlineList = onlineList.concat(
+          onlinePlayers.map((player) => {
+            return { name: player.name, server: world }
+          })
+        );
+      }
     }
     const onlineRef = doc(db, "online-now", "online");
 
-    await setDoc(onlineRef, { players: onlineList });
+    const currentPlayers = await getPlayersToCheckIfDied()
+
+    await setDoc(onlineRef, { players:[...currentPlayers, ...onlineList]  });
+    await saveWorldsToSearchOnlinePlayers(allWorlds)
 
     res.status(200).json({ onlinePlayers: onlineList, error: false });
   } catch (error) {

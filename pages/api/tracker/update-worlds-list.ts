@@ -16,8 +16,8 @@ async function updateWorlds(req: NextApiRequest, res: NextApiResponse<Data>) {
   const authorized = await isAuthorized( req.body.password)
   if(authorized){
     try {
-      const worlds = await getWorlds();
-  
+      const worlds = await getWorlds(); 
+     
       const docRef = doc(db, "all-worlds", "worlds");
   
       await setDoc(docRef, { worlds });

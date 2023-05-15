@@ -15,9 +15,8 @@ export async function getWorldByName(name: string): Promise<worldType> {
 
 export async function getOnlinePlayersByWorld(
   world: string
-): Promise<onlinePlayerType[]> {
-  const rawOnlinePlayers = await getWorldByName(world);
-  console.log({online:rawOnlinePlayers.world.online_players})
+): Promise<onlinePlayerType[]> {  
+  const rawOnlinePlayers = await getWorldByName(world);  
   return rawOnlinePlayers.world.online_players;
 }
 
