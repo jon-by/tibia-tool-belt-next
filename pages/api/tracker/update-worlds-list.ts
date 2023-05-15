@@ -4,6 +4,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import db from "./_firebase";
 import { getWorlds } from "./_tibiaData";
+import { isAuthorized } from "./_helpers";
 
 type Data = {
   error: boolean;
@@ -12,13 +13,8 @@ type Data = {
 };
 
 async function updateWorlds(req: NextApiRequest, res: NextApiResponse<Data>) {
-  const passwordRef = doc(db, `passwords`, "password");
-  const rawStoredPass = await getDoc(passwordRef);
-  const storedPassword = rawStoredPass?.data()?.password
-  const password = req.body.password;
-
-
-  if(storedPassword === password){
+  const authorized = await isAuthorized( req.body.password)
+  if(authorized){
     try {
       const worlds = await getWorlds();
   
@@ -33,8 +29,7 @@ async function updateWorlds(req: NextApiRequest, res: NextApiResponse<Data>) {
     }
 
   }else{
-
-    res.status(400).json({ error: true, errorMessage:"Authentication" });
+    res.status(401).json({ error: true, errorMessage:"Authentication" });
   }
 }
 

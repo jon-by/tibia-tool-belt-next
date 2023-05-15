@@ -12,7 +12,7 @@ import {
 import { deathType, onlinePlayerType } from "../@types/_tracker-type";
 
 import { getOnlinePlayersByWorld, getPlayerDeaths } from "../_tibiaData";
-import { getUCTDate } from "../_helpers";
+import { getUCTDate, isAuthorized } from "../_helpers";
 
 export async function handleTrackRoutine(
   req: NextApiRequest,
@@ -24,8 +24,8 @@ export async function handleTrackRoutine(
   }, 1000);
   try {
     const allWorlds = await getAllAworlds();
-    await getAndSaveDeaths();
-    await getAndSaveOnlinePlayers(allWorlds);
+    //await getAndSaveDeaths();
+
     console.log("rodou tudo");
     res.status(200).json({ error: false, message: `in ${seconds} seconds` });
   } catch (error) {
@@ -45,7 +45,7 @@ export async function getAndSaveDeaths() {
 
       const saved = await saveDeaths(deaths);
 
-      resolve({ error: saved });
+      resolve({ error: "hue" });
     } catch (error) {
       console.log(error);
       reject({ error: true });
@@ -91,29 +91,38 @@ async function getDeaths(playersToCheckDeath: string[]) {
   return deathsToSave;
 }
 
-export async function getAndSaveOnlinePlayers(allWorlds: string[]) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let onlineList: string[] = [];
-      for (let i = 0; i < allWorlds.length; i++) {
-        const world = allWorlds[i];
-        const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld(
-          world
-        );
-        onlineList = onlineList.concat(
-          onlinePlayers.map((player) => player.name)
-        );
-      }
-      const onlineRef = doc(db, "online-now", "online");
+export async function getAndSaveOnlinePlayers(req: NextApiRequest, res: NextApiResponse) {
 
-      await setDoc(onlineRef, { players: onlineList });
-
-      resolve({ error: false });
-    } catch (error) {
-      console.log(error);
-      reject({ error: false, errorMessage: JSON.stringify(error) });
+  try {
+    const authorized = await isAuthorized(req.body.password)
+    if (!authorized) {
+      res.status(401).json({ error: true, errorMessage: "Authentication" });
     }
-  });
+
+    const allWorlds = await getAllAworlds();
+    let onlineList: { name: string, server: string }[] = [];
+
+    for (let i = 0; i < allWorlds.length; i++) {
+      const world = allWorlds[i];
+      const onlinePlayers: onlinePlayerType[] = await getOnlinePlayersByWorld(
+        world
+      );
+      onlineList = onlineList.concat(
+        onlinePlayers.map((player) => {
+          return { name: player.name, server: world }
+        })
+      );
+    }
+    const onlineRef = doc(db, "online-now", "online");
+
+    await setDoc(onlineRef, { players: onlineList });
+
+    res.status(200).json({ onlinePlayers: onlineList, error: false });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: false, errorMessage: JSON.stringify(error) });
+  }
+
 }
 
 //   export async function deleteAllDocuments(res: NextApiResponse<Data>) {
