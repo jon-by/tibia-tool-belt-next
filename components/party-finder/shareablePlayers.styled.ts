@@ -36,7 +36,7 @@ export const ShareItemWrapper = styled.div`
 padding: 8px;
 position: relative;
 width: 250px;
-height: 500px;
+height: 450px;
 overflow: auto;
 
 
@@ -47,13 +47,14 @@ overflow: auto;
 
     /* Track */
     &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent;
  
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
     background: #888;
+    border-radius: 2px;
  
     }
 

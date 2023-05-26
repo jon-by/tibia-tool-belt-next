@@ -16,12 +16,11 @@
     "@types/react": "18.0.29",
     "@types/react-dom": "18.0.11",
     "@types/styled-components": "^5.1.26",
-    "bcrypt": "^5.1.0",
     "dom-to-image": "^2.6.0",
-    "firebase": "^9.21.0",
     "framer-motion": "^10.9.2",
     "fs": "^0.0.1-security",
     "i18next": "^22.4.13",
+    "mongodb": "5.5",
     "next": "13.2.4",
     "next-i18next": "^13.2.2",
     "polished": "^4.2.2",
@@ -33,7 +32,6 @@
     "react-toastify": "^9.1.2",
     "react-tooltip": "^5.10.1",
     "styled-components": "^5.3.9",
-    "toastify": "^2.0.1",
     "typescript": "5.0.2"
   }
 }

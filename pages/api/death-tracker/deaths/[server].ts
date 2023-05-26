@@ -1,48 +1,28 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import fb_db from './_firebase';
-import { getDoc, doc } from 'firebase/firestore'
-
-type deathType = {
-  "id": string,
-  "reason": string;
-  "name": string;
-  "server": string;
-  "time": number;
-}
-
-async function getDeaths(server: string) {
-
-  const deathRef = doc(fb_db, `all-deaths`, "deaths");
-  const docSnap = await getDoc(deathRef);
-  const deaths: deathType[] = docSnap?.data()?.deaths;
-
-  const filteredDeaths = deaths?.filter(death => death.server === server)
-
-  return filteredDeaths.sort((a, b) => b.time - a.time) || [];
-
-}
+import type { NextApiRequest, NextApiResponse } from "next";
+import db, { Death } from "./_db";
 
 type ResponseData = {
-  deaths: deathType[];
+  deaths?: Death[];
+  error?: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>,
+  res: NextApiResponse<ResponseData>
 ) {
-
-  const server = req?.query?.server
-  const isString = typeof server === "string"
+  console.log(req.query)
+  const server = req?.query?.server;
+  const limit = Number(req?.query?.limit)
+  const isString = typeof server === "string";
 
   if (server && isString) {
-    const queryDeaths = await getDeaths(server)
-
-    res.status(200).json({ deaths: queryDeaths });
-
+    try {
+      const deaths = await db.getDeathsByServer(server, limit);
+      res.status(200).json({ deaths });
+    } catch (error) {
+      res.status(500).json({ error: "Server error" });
+    }
   } else {
-    res.status(404);
-
+    res.status(404).json({ error: "Server is required" });
   }
-
-
 }

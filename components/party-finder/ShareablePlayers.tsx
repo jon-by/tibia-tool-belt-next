@@ -10,24 +10,22 @@ import {
 
 type shareablePlayersProps = {
   onlinePlayers: onlinePlayerType[];
-  levelToShare: number;
+  levelToShare: {min:number, max:number};
 };
 const ShareablePlayers = ({
   onlinePlayers,
   levelToShare,
 }: shareablePlayersProps) => {
   const [filteredPlayers, setFilteredPlayers] =
-    useState<filteredOnlinePlayers>();
-  const lowerRange = Math.round(levelToShare / 1.5);
-  const upperRange = Math.round(levelToShare * 1.5);
+    useState<filteredOnlinePlayers>(); 
   useEffect(() => {
     if (onlinePlayers.length === 0) return;
     const tempObj = { ms: [], ed: [], ek: [], rp: [] } as filteredOnlinePlayers;
 
     onlinePlayers.forEach((onlinePlayer) => {
       if (
-        onlinePlayer.level >= lowerRange &&
-        onlinePlayer.level <= upperRange
+        onlinePlayer.level >= levelToShare.min &&
+        onlinePlayer.level <= levelToShare.max
       ) {
         if (onlinePlayer.vocation === "Elder Druid") {
           tempObj.ed.push(onlinePlayer);

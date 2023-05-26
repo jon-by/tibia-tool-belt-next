@@ -115,7 +115,7 @@ const Tops = ({ tops }: topsProps) => {
             );
           })}
         </TopsItens>
-        <WaterMark>www.tibiatoolbelt.com.br</WaterMark>
+        <WaterMark>www.tibiatoolbelt.com</WaterMark>
       </TopsCollapsable>
       <TopsActions>
         <Button

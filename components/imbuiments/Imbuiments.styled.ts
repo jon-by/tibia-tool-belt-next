@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ImbuimentsContainer = styled.div`
 height: 100%;
 overflow: auto;
-max-height: 700px;
+max-height: 650px;
 padding: 32px;
 text-align: center;
 
