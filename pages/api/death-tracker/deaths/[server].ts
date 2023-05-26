@@ -9,8 +9,7 @@ type ResponseData = {
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
-) {
-  console.log(req.query)
+) {  
   const server = req?.query?.server;
   const limit = Number(req?.query?.limit)
   const isString = typeof server === "string";
