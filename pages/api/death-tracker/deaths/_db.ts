@@ -18,8 +18,8 @@ async function getDeathsByServer(server: string, limit?:number): Promise<Death[]
   const agregation: {}[] = []
 
   server !== "all" && agregation.push({$match:{server}})
-  limit && agregation.push({$limit:limit})
   agregation.push({ $sort : { timestamp : -1 } })
+  limit && agregation.push({$limit:limit})
 
   try {
     const results = await deathsCol.aggregate(agregation);
