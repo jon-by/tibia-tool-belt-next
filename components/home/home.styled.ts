@@ -39,8 +39,8 @@ export const ItenWrapper = styled.li`
   border: 1px solid ${COLORS.white};
   border-radius: 5px;
   padding: 8px;
-  width: 320px;
-  height: 100px;
+  width: 250px;
+  height: 60px;
   cursor: pointer;
 
   h2 {
@@ -90,6 +90,12 @@ justify-content: center;
 align-items: center;
 overflow: auto;
 padding: 1rem;
+border-radius: 5px;
+background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,0.3309698879551821) 100%);
+
+
+
 &::-webkit-scrollbar {
     width: 10px;
     }
@@ -121,6 +127,10 @@ justify-content: space-between;
 align-items: center;
 margin-top: 1rem;
 gap: .5rem;
+border: 1px solid ${COLORS.white};
+  border-radius: 5px;
+  padding: 0.5rem;
+  position: relative;
 
 
 div.name-and-image{
@@ -130,10 +140,7 @@ div.name-and-image{
   align-items: center;
   text-align: center;
   min-width: 50%;
-  border: 1px solid ${COLORS.white};
-  border-radius: 5px;
-  padding: 0.5rem;
-  position: relative;
+  padding: .5rem;
   gap: .5rem;
   h3{
     position: absolute;
@@ -158,8 +165,9 @@ min-width: 50%;
 max-height: 100%;
 overflow: hidden;
 
-p{
-  text-overflow: ellipsis;
+p{  
+  font-size: 12px;
+  padding: .5rem;
 }
 }
 `
