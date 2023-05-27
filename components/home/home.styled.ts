@@ -7,6 +7,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+
 `
 
 export const HomeItens = styled.ul`
@@ -93,6 +94,8 @@ padding: 1rem;
 border-radius: 5px;
 background: rgb(2,0,36);
 background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,0.3309698879551821) 100%);
+
+
 
 
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const AppWrapper = styled.div`
 display: flex;
