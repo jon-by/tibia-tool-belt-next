@@ -3,7 +3,9 @@
     "loot-spliter": "Fast and easy to use loot spliter",
     "itens-timer-description": "A timer to let you know when your items are running out of time.",
     "party-finder": "Check all online players that can share XP with you",
-    "imbuiments": "Quickly find the items you need for each imbuiment"
+    "imbuiments": "Quickly find the items you need for each imbuiment",
+    "no-deaths": "No one died",
+    "last-deaths": "Last deaths"
 }
 
 

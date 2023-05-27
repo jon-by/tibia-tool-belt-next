@@ -40,8 +40,8 @@ export const ItenWrapper = styled.li`
   border: 1px solid ${COLORS.white};
   border-radius: 5px;
   padding: 8px;
-  width: 250px;
-  height: 60px;
+  width: 300px;
+  font-size: 14px;
   cursor: pointer;
 
   h2 {
@@ -85,7 +85,7 @@ h2{
 `
 
 export const ScrolableContent = styled.div`
-max-height: 500px;
+max-height: 400px;
 max-width: 500px;
 justify-content: center;
 align-items: center;
