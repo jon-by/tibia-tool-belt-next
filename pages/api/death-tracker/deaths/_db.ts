@@ -12,14 +12,17 @@ export type Death = {
   timestamp: number;
 };
 
-async function getDeathsByServer(server: string, limit?:number): Promise<Death[]> {
+async function getDeathsByServer(
+  server: string,
+  limit?: number
+): Promise<Death[]> {
   const deaths: Death[] = [];
 
-  const agregation: {}[] = []
+  const agregation: {}[] = [];
 
-  server !== "all" && agregation.push({$match:{server}})
-  agregation.push({ $sort : { timestamp : -1 } })
-  limit && agregation.push({$limit:limit})
+  server !== "all" && agregation.push({ $match: { server } });
+  agregation.push({ $sort: { timestamp: -1 } });
+  limit && agregation.push({ $limit: limit });
 
   try {
     const results = await deathsCol.aggregate(agregation);
@@ -43,6 +46,39 @@ async function getDeathsByServer(server: string, limit?:number): Promise<Death[]
   }
 }
 
+async function getTopDeaths(server: string) {
+  try {
+    const topDeaths: {}[] = [];
+
+    const agregation: {}[] = [];
+
+    let $match: any = { level: { $gt: 100 } };
+
+    server !== "all" && ($match = { ...$match, server });
+
+    agregation.push({ $match });
+
+    // get players who die the most
+    const results = await deathsCol.aggregate(
+      agregation.concat([
+        { $group: { _id: "$name", count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+        { $limit: 3 },
+      ])
+    );
+
+    for await (const result of results) {
+      topDeaths.push({ name: result._id, count: result.count });
+    }
+
+    return topDeaths;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 export default {
   getDeathsByServer,
+  getTopDeaths,
 };

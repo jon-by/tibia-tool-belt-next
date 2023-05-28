@@ -117,6 +117,7 @@ const Home = () => {
             ) : deaths.length > 0 ? (
               deaths.map((death) => {
                 return (
+                  //todo: crate a DeathItem component
                   <DeathItem key={death._id}>
                     <div className="name-and-image">
                       <h3>{death.name}</h3>
