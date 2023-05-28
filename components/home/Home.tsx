@@ -21,61 +21,50 @@ import { WORLDS } from "@/constants/death-tracker";
 
 const Home = () => {
   const { t } = useTranslation("tags");
-  const [server, setServer] = useState("all");
+  const [server, setServer] = useState("");
   const [deaths, setDeaths] = useState<Death[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-
-
   async function getDeaths() {
-
-
-     
-
     try {
-      setIsLoading(true);     
+      setIsLoading(true);
       const rawResponse = await fetch(
         `/api/death-tracker/deaths/${server}?limit=30`
       );
       const response = await rawResponse.json();
       setDeaths(response.deaths);
-      
 
       setIsLoading(false);
     } catch (error) {
-      setDeaths([])
+      setDeaths([]);
       setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
-
-
   }
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setServer(event.currentTarget.value);
 
-    localStorage.setItem("preferred-server", event.currentTarget.value)
+    localStorage.setItem("preferred-server", event.currentTarget.value);
   }
 
-  useEffect(()=>{
-    const localServer = localStorage.getItem("preferred-server")
+  useEffect(() => {
+    const localServer = localStorage.getItem("preferred-server");
 
-    console.log({localServer})
+    const server = localServer || "all";
 
-    if(localServer && localServer !== server){
-      setServer(localServer)
-    }
-    
-  })
+    setServer(server);
+  });
 
   useEffect(() => {
-    getDeaths();
+    if (server) {
+      getDeaths();
+    }
   }, [server]);
 
   return (
     <HomeContainer>
-    
       <h1>Tibia Tool Belt</h1>
       <HomeItens>
         {MENU_OPTIONS.filter((menuOption) => menuOption.url !== "/").map(
@@ -104,14 +93,11 @@ const Home = () => {
           <SelectWorld>
             <h3>{t("last-deaths")}</h3>
 
-            <select onChange={handleChange} name="" id="">
-              <option defaultValue="all" value="all">
-                All
-              </option>
+            <select onChange={handleChange}  value={server} name="" id="">              
               {WORLDS.map((world) => {
                 return (
-                  <option key={world} value={world}>
-                    {world}
+                  <option  key={world} value={world}>
+                    {world === "all" ? "--": world}
                   </option>
                 );
               })}
@@ -120,9 +106,15 @@ const Home = () => {
 
           <ScrolableContent>
             {isLoading ? (
-              <Skeleton  baseColor={COLORS["body-bg"]} highlightColor="rgba(255,255,255,.1)" count={6} height={100} width={450} />
-            ) : (
-              deaths.length > 0? deaths.map((death) => {
+              <Skeleton
+                baseColor={COLORS["body-bg"]}
+                highlightColor="rgba(255,255,255,.1)"
+                count={6}
+                height={100}
+                width={450}
+              />
+            ) : deaths.length > 0 ? (
+              deaths.map((death) => {
                 return (
                   <DeathItem key={death._id}>
                     <div className="name-and-image">
@@ -143,7 +135,9 @@ const Home = () => {
                     </div>
                   </DeathItem>
                 );
-              }): <div>{t("no-deaths")}</div>
+              })
+            ) : (
+              <div>{t("no-deaths")}</div>
             )}
           </ScrolableContent>
         </DeathsWrapper>

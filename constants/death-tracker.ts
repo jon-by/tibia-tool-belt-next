@@ -1,4 +1,5 @@
 export const WORLDS = [
+  "all",
   "Adra",
   "Alumbra",
   "Antica",
