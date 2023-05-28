@@ -18,6 +18,7 @@ import Link from "next/link";
 import { Death } from "./@types/home-types";
 import { getFormatedDate } from "@/helpers/global-helpers";
 import { WORLDS } from "@/constants/death-tracker";
+import DeathsPodium from "./DeathsPodium";
 
 const Home = () => {
   const { t } = useTranslation(["tags"]);
@@ -90,6 +91,7 @@ const Home = () => {
       </HomeItens>
       <HomeDeaths>
         <DeathsWrapper>
+        <DeathsPodium server={server}/>
           <SelectWorld>
             <h3>{t("common:last-deaths")}</h3>
 
