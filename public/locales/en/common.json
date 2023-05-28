@@ -4,7 +4,10 @@
     "imageCopiedMessage": "Image copied CTRL + V to send it",
     "copyToImageError": "error copying image, please try again",
     "copyAsImage": "Copy as image",
-    "made-by": "made by"
+    "made-by": "made by",
+    "showing-30": "Showing last 30 deaths",
+    "no-deaths": "No one died",
+    "last-deaths": "Last deaths"
     
     
 }

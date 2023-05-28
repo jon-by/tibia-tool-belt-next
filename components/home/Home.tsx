@@ -20,7 +20,7 @@ import { getFormatedDate } from "@/helpers/global-helpers";
 import { WORLDS } from "@/constants/death-tracker";
 
 const Home = () => {
-  const { t } = useTranslation("tags");
+  const { t } = useTranslation(["tags"]);
   const [server, setServer] = useState("");
   const [deaths, setDeaths] = useState<Death[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -91,19 +91,20 @@ const Home = () => {
       <HomeDeaths>
         <DeathsWrapper>
           <SelectWorld>
-            <h3>{t("last-deaths")}</h3>
+            <h3>{t("common:last-deaths")}</h3>
 
-            <select onChange={handleChange}  value={server} name="" id="">              
+            <select onChange={handleChange} value={server} name="" id="">
               {WORLDS.map((world) => {
                 return (
-                  <option  key={world} value={world}>
-                    {world === "all" ? "--": world}
+                  <option key={world} value={world}>
+                    {world === "all" ? "--" : world}
                   </option>
                 );
               })}
             </select>
           </SelectWorld>
 
+          <small>{t("common:showing-30")}</small>
           <ScrolableContent>
             {isLoading ? (
               <Skeleton
@@ -137,7 +138,7 @@ const Home = () => {
                 );
               })
             ) : (
-              <div>{t("no-deaths")}</div>
+              <div>{t("common:no-deaths")}</div>
             )}
           </ScrolableContent>
         </DeathsWrapper>
