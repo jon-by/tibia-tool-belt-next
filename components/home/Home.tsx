@@ -21,7 +21,7 @@ import { WORLDS } from "@/constants/death-tracker";
 import DeathsPodium from "./DeathsPodium";
 
 const Home = () => {
-  const { t } = useTranslation(["tags"]);
+  const { t } = useTranslation("tags");
   const [server, setServer] = useState("");
   const [deaths, setDeaths] = useState<Death[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,9 +56,10 @@ const Home = () => {
     const server = localServer || "all";
 
     setServer(server);
-  });
+  },[]);
 
   useEffect(() => {
+    console.log("uai")
     if (server) {
       getDeaths();
     }
