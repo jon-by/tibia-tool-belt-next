@@ -1,55 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PodiumWrapper, PodiumItem } from "./deathsPodium.styled";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import { COLORS } from "@/constants/global";
 import { useTranslation } from "next-i18next";
 
-type DeathsPodiumProps = {
-  server: string;
-};
+import { Death } from "./@types/home-types";
 
 const PODIUM_IMAGES = [
   "/images/home/Golden_Goblet.gif",
   "/images/home/Silver_Goblet.gif",
-  "/images/home/Bronze_Goblet.gif", 
+  "/images/home/Bronze_Goblet.gif",
 ];
-type Top = { name: string; count: number }
 
-const DeathsPodium = ({ server }: DeathsPodiumProps) => {
+type DeathsPodiumProps = {
+  isLoading: boolean;
+  topDeaths: Death[];
+};
+const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
+  const { t } = useTranslation("common");
 
-  const {t} = useTranslation("common")
-  const [topDeaths, setTopDeaths] = useState<Top[]>(
-    []
-  );
-
-  const [isLoading, setIsloading] = useState(false);
-
-  async function getTopDeaths() {
-    try {
-      setIsloading(true);
-      const rawResponse = await fetch(
-        `/api/death-tracker/deaths/top/${server}`
-      );
-      const response = await rawResponse.json();
-      setTopDeaths(response.topDeaths);
-      setIsloading(false);
-    } catch (error) {
-      setTopDeaths([]);
-      setIsloading(false);
-    } finally {
-      setIsloading(false);
-    }
-  }
-
-  useEffect(() => {
-    if (server) {
-      console.log("rodou");
-      getTopDeaths();
-    }
-  }, [server]);
-
-  const Render = (top:Top, index:number) => {
+  const Render = (top: Death, index: number) => {
     switch (true) {
       case isLoading:
         return (
@@ -63,8 +34,8 @@ const DeathsPodium = ({ server }: DeathsPodiumProps) => {
             />
           </PodiumItem>
         );
-        case topDeaths.length < 1:
-          return null
+      case topDeaths.length < 1:
+        return null;
 
       default:
         return (
@@ -77,10 +48,9 @@ const DeathsPodium = ({ server }: DeathsPodiumProps) => {
               alt="second place"
             />
             <strong>{top.name}</strong>
-            <p>({top.count} Deaths)</p>
+            <p>{top.level} ({top.count} Deaths)</p>
           </PodiumItem>
-        )
-        
+        );
     }
   };
 
@@ -95,9 +65,13 @@ const DeathsPodium = ({ server }: DeathsPodiumProps) => {
           src="/images/home/Medal_of_Honour.gif"
         ></Image>
       </div>
-      { topDeaths.length > 0 ?  topDeaths.map((top, index) => {
-        return Render(top, index)
-      }): <PodiumItem>{t("no-deaths")}</PodiumItem>}
+      {topDeaths.length > 0 ? (
+        topDeaths.map((top, index) => {
+          return Render(top, index);
+        })
+      ) : (
+        <PodiumItem>{t("no-deaths")}</PodiumItem>
+      )}
     </PodiumWrapper>
   );
 };

@@ -34,6 +34,14 @@ export const PodiumItem = styled.div`
   text-align: center;
   position: relative;
 
+  strong{
+    font-size: 14px;
+  }
+
+  p{
+    font-size: 12px;
+  }
+
   &.order-0 {
     order: 2;
     margin-top: -50px;

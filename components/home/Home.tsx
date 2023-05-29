@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { COLORS, MENU_OPTIONS } from "@/constants/global";
 import Skeleton from "react-loading-skeleton";
+import { COLORS, MENU_OPTIONS } from "@/constants/global";
+
+import DeathsPodium from "./DeathsPodium";
+
 import {
   HomeContainer,
   ItenWrapper,
@@ -13,31 +18,30 @@ import {
   DeathItem,
   SelectWorld,
 } from "./home.styled";
-import Image from "next/image";
-import Link from "next/link";
-import { Death } from "./@types/home-types";
+
+import { Death, Top } from "./@types/home-types";
 import { getFormatedDate } from "@/helpers/global-helpers";
 import { WORLDS } from "@/constants/death-tracker";
-import DeathsPodium from "./DeathsPodium";
 
 const Home = () => {
   const { t } = useTranslation("tags");
   const [server, setServer] = useState("");
   const [deaths, setDeaths] = useState<Death[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [topDeaths, setTopDeaths] = useState<Death[]>([]);
 
   async function getDeaths() {
     try {
       setIsLoading(true);
       const rawResponse = await fetch(
-        `/api/death-tracker/deaths/${server}?limit=30`
+        `/api/death-tracker/deaths/top/${server}`
       );
       const response = await rawResponse.json();
-      setDeaths(response.deaths);
-
+      setTopDeaths(response.topDeaths.splice(0, 3));
+      setDeaths(response.topDeaths.splice(4, response.topDeaths.length));
       setIsLoading(false);
     } catch (error) {
-      setDeaths([]);
+      setTopDeaths([]);
       setIsLoading(false);
     } finally {
       setIsLoading(false);
@@ -46,20 +50,16 @@ const Home = () => {
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setServer(event.currentTarget.value);
-
     localStorage.setItem("preferred-server", event.currentTarget.value);
   }
 
   useEffect(() => {
     const localServer = localStorage.getItem("preferred-server");
-
     const server = localServer || "all";
-
     setServer(server);
-  },[]);
+  }, []);
 
   useEffect(() => {
-    console.log("uai")
     if (server) {
       getDeaths();
     }
@@ -92,7 +92,7 @@ const Home = () => {
       </HomeItens>
       <HomeDeaths>
         <DeathsWrapper>
-        <DeathsPodium server={server}/>
+          <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
           <SelectWorld>
             <h3>{t("common:last-deaths")}</h3>
 
@@ -107,7 +107,7 @@ const Home = () => {
             </select>
           </SelectWorld>
 
-          <small>{t("common:showing-30")}</small>
+          <small>{t("common:sort-by")}</small>
           <ScrolableContent>
             {isLoading ? (
               <Skeleton
@@ -122,22 +122,10 @@ const Home = () => {
                 return (
                   //todo: crate a DeathItem component
                   <DeathItem key={death._id}>
-                    <div className="name-and-image">
-                      <h3>{death.name}</h3>
-                      <p>{death.server}</p>
-                      <Image
-                        width={31}
-                        height={48}
-                        src="/images/home/Grave.gif"
-                        alt="grave"
-                      />
-
-                      <p>{getFormatedDate(death.timestamp)}</p>
-                    </div>
-
-                    <div className="time-and-reason">
-                      <p>{death.reason}</p>
-                    </div>
+                    <h3>{death.name}</h3>
+                    <p>
+                      level {death.level} ({death.count} Deaths)
+                    </p>
                   </DeathItem>
                 );
               })

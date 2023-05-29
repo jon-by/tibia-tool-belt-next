@@ -6,4 +6,7 @@ export type Death = {
     reason: string;
     server: string;
     timestamp: number;
+    count?: number
   };
+
+  export type Top = { name: string; count: number }

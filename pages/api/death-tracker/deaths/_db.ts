@@ -77,7 +77,7 @@ async function getTopDeaths(server: string) {
       } else {
         return b.level - a.level;
       }
-    });;
+    }).splice(0,30);
   } catch (error) {
     console.log(error);
     return [];
