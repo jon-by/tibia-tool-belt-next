@@ -55,7 +55,7 @@ const Home = () => {
 
   useEffect(() => {
     const localServer = localStorage.getItem("preferred-server");
-    const server = localServer || "all";
+    const server = localServer || "Antica";
     setServer(server);
   }, []);
 
