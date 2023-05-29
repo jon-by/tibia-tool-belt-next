@@ -12,7 +12,7 @@ module.exports = {
     typeof window === "undefined"
       ? require("path").resolve("./public/locales")
       : "/locales",
-  fallbackLng: "en",
+  fallbackLng: "pt-BR",
 
   /**
    * @link https://github.com/i18next/next-i18next#6-advanced-configuration
