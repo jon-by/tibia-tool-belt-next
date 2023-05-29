@@ -17,6 +17,8 @@ type DeathsPodiumProps = {
   isLoading: boolean;
   topDeaths: Death[];
 };
+
+
 const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
   const { t } = useTranslation("common");
 
@@ -48,7 +50,7 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
               alt="second place"
             />
             <strong>{top.name}</strong>
-            <p>{top.level} ({top.count} Deaths)</p>
+            <p>lvl {top.level} ({top.count} Deaths)</p>
           </PodiumItem>
         );
     }

@@ -19,10 +19,15 @@ import {
   SelectWorld,
 } from "./home.styled";
 
-import { Death, Top } from "./@types/home-types";
-import { getFormatedDate } from "@/helpers/global-helpers";
+import { Death } from "./@types/home-types";
+
 import { WORLDS } from "@/constants/death-tracker";
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+const d = new Date()
 const Home = () => {
   const { t } = useTranslation("tags");
   const [server, setServer] = useState("");
@@ -94,8 +99,6 @@ const Home = () => {
         <DeathsWrapper>
           <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
           <SelectWorld>
-            <h3>{t("common:last-deaths")}</h3>
-
             <select onChange={handleChange} value={server} name="" id="">
               {WORLDS.map((world) => {
                 return (
@@ -107,7 +110,7 @@ const Home = () => {
             </select>
           </SelectWorld>
 
-          <small>{t("common:sort-by")}</small>
+          <small>{t("common:sort-by")} ( {t(`common:month-${d.getMonth()}`)} )</small>
           <ScrolableContent>
             {isLoading ? (
               <Skeleton
