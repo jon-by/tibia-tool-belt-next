@@ -51,3 +51,11 @@ margin-left:8px;
 cursor: pointer;
 
 `
+
+export const  ResultText = styled.div`
+display: flex;
+justify-content: ce;
+align-items: center;
+flex-direction: column;
+gap: .5rem;
+`

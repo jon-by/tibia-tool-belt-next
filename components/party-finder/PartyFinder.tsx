@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Input } from "./partyFinder.styled";
+import { Input, ResultText } from "./partyFinder.styled";
 import { useTranslation } from "next-i18next";
 import ShareablePlayers from "./ShareablePlayers";
-import useDebounce from "../custom-hooks/useDebounce";
-import { MagnifyingGlass } from "react-loader-spinner";
 
-import {
-  Wrapper,
-  InputsWrapper,
-  InformationIconWrapper,
-  TitleWrapper,
-} from "./partyFinder.styled";
+import { Wrapper, InputsWrapper, TitleWrapper } from "./partyFinder.styled";
 import { charDataType, onlinePlayerType } from "./@types/partyFinder";
 import { toast } from "react-toastify";
 
 import Button from "../button/Button";
-import { InformationIcon, RestartIcon } from "../icons/icons";
+import Skeleton from "react-loading-skeleton";
+import { COLORS } from "@/constants/global";
 
 const PartyFinder = () => {
+  const { t } = useTranslation("party-finder");
   const [charName, setCharName] = useState("");
-  const debouncedSearchTerm: string = useDebounce<string>(charName, 500);
   const [charData, setCharData] = useState({
     name: "",
     level: 0,
@@ -29,14 +23,12 @@ const PartyFinder = () => {
   });
   const [onlinePlayers, setOnlinePlayers] = useState<onlinePlayerType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation("party-finder");
 
   async function searchChar() {
+    const CHAR_DATA_URL = `https://api.tibiadata.com/v3/character/${charName}`;
     try {
       setIsLoading(true);
-      const rawCharData = await fetch(
-        `https://api.tibiadata.com/v3/character/${charName}`
-      );
+      const rawCharData = await fetch(CHAR_DATA_URL);
       const charData = (await rawCharData.json()) as charDataType;
 
       if (!charData.characters.character.name) {
@@ -63,8 +55,6 @@ const PartyFinder = () => {
           minAndMax: { min, max },
         };
       });
-
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -73,11 +63,10 @@ const PartyFinder = () => {
   }
 
   async function searchWorld() {
+    const WORLD_DATA_URL = `https://api.tibiadata.com/v3/world/${charData.world}`;
     try {
       setIsLoading(true);
-      const rawWorldData = await fetch(
-        `https://api.tibiadata.com/v3/world/${charData.world}`
-      );
+      const rawWorldData = await fetch(WORLD_DATA_URL);
       const worldData = await rawWorldData.json();
       setOnlinePlayers(worldData.worlds.world.online_players);
       setIsLoading(false);
@@ -89,15 +78,44 @@ const PartyFinder = () => {
   }
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      searchChar();
-    }
-  }, [debouncedSearchTerm]);
-
-  useEffect(() => {
     if (!charData.name || !charData.level || !charData.world) return;
     searchWorld();
   }, [charData]);
+
+  const RenderText = () => {
+    switch (true) {
+      case isLoading:
+        return (
+          <ResultText>
+            <Skeleton
+              baseColor={COLORS["body-bg"]}
+              highlightColor="rgba(255,255,255,.1)"
+              count={3}
+              height={21}
+              width={250}
+              style={{ margin: ".2rem 0" }}
+            />
+          </ResultText>
+        );
+
+      case onlinePlayers.length > 0:
+        return (
+          <ResultText>
+            <p>{t("playersShareText")}</p>
+            <p>
+              {charData.name}, {charData.vocation}, {charData.level},
+              {charData.world}
+            </p>
+            <p>
+              ( Min: {charData.minAndMax.min} Max: {charData.minAndMax.max} )
+            </p>
+          </ResultText>
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <Wrapper>
@@ -113,37 +131,14 @@ const PartyFinder = () => {
           value={charName}
           type="text"
         />
-        {charData.world && charName && (
-          <Button Icon={RestartIcon} handleClick={searchWorld} />
-        )}
+        <Button content={`${t("search")}`} handleClick={searchChar}></Button>
       </InputsWrapper>
-      {onlinePlayers.length > 0 && (
-        <div style={{ textAlign: "center" }}>
-          {t("playersShareText")}
-          <strong>
-            ( {charData.name} - {charData.vocation} - {charData.level} |{" "}
-            {charData.world} )
-          </strong>
-          <p style={{ marginTop: ".5rem" }}>Min: {charData.minAndMax.min} Max: {charData.minAndMax.max}</p>
-        </div>
-      )}
-      {isLoading ? (
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="MagnifyingGlass-loading"
-          wrapperStyle={{}}
-          wrapperClass="MagnifyingGlass-wrapper"
-          glassColor="#c0efff"
-          color="#dfdfdf"
-        />
-      ) : (
-        <ShareablePlayers
-          levelToShare={charData.minAndMax}
-          onlinePlayers={onlinePlayers}
-        />
-      )}
+      <RenderText />
+      <ShareablePlayers
+        levelToShare={charData.minAndMax}
+        onlinePlayers={onlinePlayers}
+        isLoading={isLoading}
+      />
     </Wrapper>
   );
 };

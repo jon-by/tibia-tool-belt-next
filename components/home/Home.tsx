@@ -122,7 +122,8 @@ const Home = () => {
                 count={6}
                 height={34}
                 width={250}
-                style={{margin:".2rem 0"}}              />
+                style={{margin:".2rem 0"}}
+              />
             ) : deaths.length > 0 ? (
               deaths.map((death) => {
                 return (
