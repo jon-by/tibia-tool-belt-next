@@ -1,5 +1,4 @@
-export const WORLDS = [
-  "all",
+export const WORLDS = [  
   "Adra",
   "Alumbra",
   "Antica",
