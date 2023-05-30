@@ -77,7 +77,7 @@ async function getTopDeaths(server: string) {
       } else {
         return b.level - a.level;
       }
-    }).splice(0,30);
+    }).splice(0, 53); // 53 = top 3 + 50 results
   } catch (error) {
     console.log(error);
     return [];
