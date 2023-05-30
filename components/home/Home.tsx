@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Skeleton from "react-loading-skeleton";
-import { COLORS, MENU_OPTIONS } from "@/constants/global";
+import {
+  COLORS,
+  MENU_OPTIONS,
+  PREFERRED_SERVER_LOCAL,
+} from "@/constants/global";
 
 import DeathsPodium from "./DeathsPodium";
 
@@ -11,8 +15,7 @@ import {
   HomeContainer,
   ItenWrapper,
   Content,
-  HomeItens,
-  HomeDeaths,
+  HomeItens, 
   DeathsWrapper,
   ScrolableContent,
   DeathItem,
@@ -23,21 +26,22 @@ import { Death } from "./@types/home-types";
 
 import { WORLDS } from "@/constants/death-tracker";
 
-const d = new Date()
+const d = new Date();
 const Home = () => {
   const { t } = useTranslation("tags");
   const [server, setServer] = useState("");
   const [deaths, setDeaths] = useState<Death[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [topDeaths, setTopDeaths] = useState<Death[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getDeaths() {
+    const GET_TOP_DEATHS_URL = `/api/death-tracker/deaths/top/${server}`;
+
     try {
       setIsLoading(true);
-      const rawResponse = await fetch(
-        `/api/death-tracker/deaths/top/${server}`
-      );
+      const rawResponse = await fetch(GET_TOP_DEATHS_URL);
       const response = await rawResponse.json();
+      
       setTopDeaths(response.topDeaths.splice(0, 3));
       setDeaths(response.topDeaths.splice(4, response.topDeaths.length));
       setIsLoading(false);
@@ -51,12 +55,12 @@ const Home = () => {
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setServer(event.currentTarget.value);
-    localStorage.setItem("preferred-server", event.currentTarget.value);
+    localStorage.setItem(PREFERRED_SERVER_LOCAL, event.currentTarget.value);
   }
 
   useEffect(() => {
-    const localServer = localStorage.getItem("preferred-server");
-    const server = localServer || "Antica";
+    const localServer = localStorage.getItem(PREFERRED_SERVER_LOCAL);
+    const server = localServer || "Antica"; 
     setServer(server);
   }, []);
 
@@ -91,7 +95,8 @@ const Home = () => {
           }
         )}
       </HomeItens>
-      <HomeDeaths>
+      
+      
         <DeathsWrapper>
           <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
           <SelectWorld>
@@ -106,16 +111,18 @@ const Home = () => {
             </select>
           </SelectWorld>
 
-          <small>{t("common:sort-by")} ( {t(`common:month-${d.getMonth()}`)} )</small>
+          <small>
+            {t("common:sort-by")} ( {t(`common:month-${d.getMonth()}`)} )
+          </small>
           <ScrolableContent>
             {isLoading ? (
               <Skeleton
                 baseColor={COLORS["body-bg"]}
                 highlightColor="rgba(255,255,255,.1)"
                 count={6}
-                height={100}
-                width={450}
-              />
+                height={34}
+                width={250}
+                style={{margin:".2rem 0"}}              />
             ) : deaths.length > 0 ? (
               deaths.map((death) => {
                 return (
@@ -123,7 +130,7 @@ const Home = () => {
                   <DeathItem key={death._id}>
                     <h3>{death.name}</h3>
                     <p>
-                      level {death.level} ({death.count} Deaths)
+                      level {death.level} ( {death.count} {t("common:deaths")} )
                     </p>
                   </DeathItem>
                 );
@@ -133,7 +140,7 @@ const Home = () => {
             )}
           </ScrolableContent>
         </DeathsWrapper>
-      </HomeDeaths>
+      
     </HomeContainer>
   );
 };

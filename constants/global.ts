@@ -19,6 +19,8 @@ export const LANGUAGES = [
 
 export const USING_ITENS_LOCAL_KEY = "using-itens-local";
 
+export const PREFERRED_SERVER_LOCAL = "preferred-server"
+
 export const MENU_OPTIONS = [
   {
     title: "Home",

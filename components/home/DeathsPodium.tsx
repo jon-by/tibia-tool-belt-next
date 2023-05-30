@@ -48,7 +48,7 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
             />
             <strong>{top.name}</strong>
             <p>
-              lvl {top.level} ({top.count} Deaths)
+              lvl {top.level} ( {top.count} {t("deaths")} )
             </p>
           </PodiumItem>
         );

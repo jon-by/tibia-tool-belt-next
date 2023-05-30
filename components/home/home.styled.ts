@@ -68,10 +68,6 @@ export const Content = styled.div`
   height: 100%;
 `;
 
-export const HomeDeaths = styled.div`
-  margin-top: 2rem;
-`;
-
 export const DeathsWrapper = styled.div`
   display: flex;
   justify-content: center;
