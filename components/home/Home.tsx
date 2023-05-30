@@ -15,7 +15,7 @@ import {
   HomeContainer,
   ItenWrapper,
   Content,
-  HomeItens, 
+  HomeItens,
   DeathsWrapper,
   ScrolableContent,
   DeathItem,
@@ -41,7 +41,7 @@ const Home = () => {
       setIsLoading(true);
       const rawResponse = await fetch(GET_TOP_DEATHS_URL);
       const response = await rawResponse.json();
-      
+
       setTopDeaths(response.topDeaths.splice(0, 3));
       setDeaths(response.topDeaths.splice(4, response.topDeaths.length));
       setIsLoading(false);
@@ -60,7 +60,7 @@ const Home = () => {
 
   useEffect(() => {
     const localServer = localStorage.getItem(PREFERRED_SERVER_LOCAL);
-    const server = localServer || "Antica"; 
+    const server = localServer || "Antica";
     setServer(server);
   }, []);
 
@@ -77,7 +77,14 @@ const Home = () => {
         {MENU_OPTIONS.filter((menuOption) => menuOption.url !== "/").map(
           (menuOption) => {
             return (
-              <ItenWrapper key={menuOption.url}>
+              <ItenWrapper
+                whileHover={{
+                  scale: 1.04,
+                  transition: { duration: 0.1 },
+                }}
+                whileTap={{ scale: 0.9 }}
+                key={menuOption.url}
+              >
                 <Link href={menuOption.url}>
                   <h2>{menuOption.title}</h2>
                   <Content>
@@ -95,53 +102,51 @@ const Home = () => {
           }
         )}
       </HomeItens>
-      
-      
-        <DeathsWrapper>
-          <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
-          <SelectWorld>
-            <select onChange={handleChange} value={server} name="" id="">
-              {WORLDS.map((world) => {
-                return (
-                  <option key={world} value={world}>
-                    {world === "all" ? "--" : world}
-                  </option>
-                );
-              })}
-            </select>
-          </SelectWorld>
 
-          <small>
-            {t("common:sort-by")} ( {t(`common:month-${d.getMonth()}`)} )
-          </small>
-          <ScrolableContent>
-            {isLoading ? (
-              <Skeleton
-                baseColor={COLORS["body-bg"]}
-                highlightColor="rgba(255,255,255,.1)"
-                count={6}
-                height={34}
-                width={250}
-                style={{margin:".2rem 0"}}
-              />
-            ) : deaths.length > 0 ? (
-              deaths.map((death) => {
-                return (
-                  //todo: crate a DeathItem component
-                  <DeathItem key={death._id}>
-                    <h3>{death.name}</h3>
-                    <p>
-                      level {death.level} ( {death.count} {t("common:deaths")} )
-                    </p>
-                  </DeathItem>
-                );
-              })
-            ) : (
-              <div>{t("common:no-deaths")}</div>
-            )}
-          </ScrolableContent>
-        </DeathsWrapper>
-      
+      <DeathsWrapper>
+        <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
+        <SelectWorld>
+          <select onChange={handleChange} value={server} name="" id="">
+            {WORLDS.map((world) => {
+              return (
+                <option key={world} value={world}>
+                  {world === "all" ? "--" : world}
+                </option>
+              );
+            })}
+          </select>
+        </SelectWorld>
+
+        <small>
+          {t("common:sort-by")} ( {t(`common:month-${d.getMonth()}`)} )
+        </small>
+        <ScrolableContent>
+          {isLoading ? (
+            <Skeleton
+              baseColor={COLORS["body-bg"]}
+              highlightColor="rgba(255,255,255,.1)"
+              count={6}
+              height={34}
+              width={250}
+              style={{ margin: ".2rem 0" }}
+            />
+          ) : deaths.length > 0 ? (
+            deaths.map((death) => {
+              return (
+                //todo: crate a DeathItem component
+                <DeathItem key={death._id}>
+                  <h3>{death.name}</h3>
+                  <p>
+                    level {death.level} ( {death.count} {t("common:deaths")} )
+                  </p>
+                </DeathItem>
+              );
+            })
+          ) : (
+            <div>{t("common:no-deaths")}</div>
+          )}
+        </ScrolableContent>
+      </DeathsWrapper>
     </HomeContainer>
   );
 };

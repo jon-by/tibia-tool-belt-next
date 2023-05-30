@@ -52,4 +52,10 @@ export const MENU_OPTIONS = [
     url: "/imbuiments",
     description: "imbuiments",
   },
+  {
+    title: "Death Tracker",
+    icon: "/images/death-tracker/Grave.gif",
+    url: "/death-tracker",
+    description: "death-tracker-description",
+  },
 ];

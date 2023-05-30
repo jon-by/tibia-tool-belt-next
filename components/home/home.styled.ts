@@ -1,4 +1,5 @@
 import { COLORS } from "@/constants/global";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
@@ -30,7 +31,7 @@ export const HomeItens = styled.ul`
   }
 `;
 
-export const ItenWrapper = styled.li`
+export const ItenWrapper = styled(motion.li)`
   position: relative;
   display: flex;
   justify-content: center;
@@ -41,6 +42,9 @@ export const ItenWrapper = styled.li`
   width: 300px;
   font-size: 14px;
   cursor: pointer;
+  img{
+    object-fit: contain;
+  }
 
   h2 {
     position: absolute;
