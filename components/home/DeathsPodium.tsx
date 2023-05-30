@@ -18,7 +18,6 @@ type DeathsPodiumProps = {
   topDeaths: Death[];
 };
 
-
 const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
   const { t } = useTranslation("common");
 
@@ -36,8 +35,6 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
             />
           </PodiumItem>
         );
-      case topDeaths.length < 1:
-        return null;
 
       default:
         return (
@@ -50,7 +47,9 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
               alt="second place"
             />
             <strong>{top.name}</strong>
-            <p>lvl {top.level} ({top.count} Deaths)</p>
+            <p>
+              lvl {top.level} ({top.count} Deaths)
+            </p>
           </PodiumItem>
         );
     }
