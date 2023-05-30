@@ -23,10 +23,6 @@ import { Death } from "./@types/home-types";
 
 import { WORLDS } from "@/constants/death-tracker";
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
-
 const d = new Date()
 const Home = () => {
   const { t } = useTranslation("tags");
