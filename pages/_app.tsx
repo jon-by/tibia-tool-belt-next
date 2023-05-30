@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { ToastContainer } from "react-toastify";
 import { appWithTranslation } from "next-i18next";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 import LanguageDetect from "@/components/language-detect/language-detector/LanguageDetect";
 import LangContext from "@/context/LangContext";
 
@@ -17,6 +18,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <LangContext>
       <AppWrapper>
+      <GoogleAnalytics trackPageViews />
         <ToastContainer
           position="top-right"
           autoClose={5000}
