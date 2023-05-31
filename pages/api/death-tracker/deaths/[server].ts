@@ -4,6 +4,7 @@ import db, { Death } from "./_db";
 type ResponseData = {
   deaths?: Death[];
   error?: string;
+  totalResults?:number
 };
 
 export default async function handler(
@@ -16,8 +17,8 @@ export default async function handler(
 
   if (server && isString) {
     try {
-      const deaths = await db.getDeathsByServer(server, limit);
-      res.status(200).json({ deaths });
+      const {deaths, totalResults} = await db.getDeathsByServer(server, limit);
+      res.status(200).json({ deaths, totalResults });
     } catch (error) {
       res.status(500).json({ error: "Server error" });
     }

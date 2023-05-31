@@ -16,7 +16,7 @@ export type Death = {
 async function getDeathsByServer(
   server: string,
   limit?: number
-): Promise<Death[]> {
+): Promise<{deaths?:Death[], totalResults?:number}> {
   const deaths: Death[] = [];
 
   const agregation: {}[] = [];
@@ -27,6 +27,7 @@ async function getDeathsByServer(
 
   try {
     const results = await deathsCol.aggregate(agregation);
+    const totalResults = await deathsCol.countDocuments({server}); 
 
     for await (const result of results) {
       deaths.push({
@@ -40,10 +41,10 @@ async function getDeathsByServer(
       });
     }
 
-    return deaths;
+    return {deaths, totalResults};
   } catch (error) {
     console.log(error);
-    return [];
+    return {};
   }
 }
 
