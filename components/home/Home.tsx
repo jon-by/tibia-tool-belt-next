@@ -43,7 +43,7 @@ const Home = () => {
       const response = await rawResponse.json();
 
       setTopDeaths(response.topDeaths.splice(0, 3));
-      setDeaths(response.topDeaths.splice(4, response.topDeaths.length));
+      setDeaths(response.topDeaths.splice(0, response.topDeaths.length));
       setIsLoading(false);
     } catch (error) {
       setTopDeaths([]);
