@@ -100,3 +100,17 @@ export const DeathItems = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
+export const Pagination = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+gap: .5rem;
+margin: 1rem;
+
+span{
+  color: ${COLORS.active};
+  font-size: 16px;
+  font-weight: 800;
+}
+`

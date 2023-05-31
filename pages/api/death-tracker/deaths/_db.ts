@@ -13,16 +13,23 @@ export type Death = {
   count?: number
 };
 
-async function getDeathsByServer(
-  server: string,
-  limit?: number
-): Promise<{deaths?:Death[], totalResults?:number}> {
+type getDeathsProps ={
+  server:string;
+  limit:number;
+  skip:number
+}
+
+async function getDeathsByServer({server, limit, skip}:getDeathsProps): Promise<{deaths?:Death[], totalResults?:number}> {
   const deaths: Death[] = [];
 
   const agregation: {}[] = [];
 
   server !== "all" && agregation.push({ $match: { server } });
+
   agregation.push({ $sort: { timestamp: -1 } });
+
+  skip > 0 && agregation.push({ $skip: skip })
+  
   limit && agregation.push({ $limit: limit });
 
   try {

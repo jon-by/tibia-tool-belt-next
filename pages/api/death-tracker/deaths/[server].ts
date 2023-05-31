@@ -13,11 +13,12 @@ export default async function handler(
 ) {  
   const server = req?.query?.server;
   const limit = Number(req?.query?.limit)
+  const skip = Number(req?.query?.skip)
   const isString = typeof server === "string";
-
+console.log({skip})
   if (server && isString) {
     try {
-      const {deaths, totalResults} = await db.getDeathsByServer(server, limit);
+      const {deaths, totalResults} = await db.getDeathsByServer({server, limit, skip});
       res.status(200).json({ deaths, totalResults });
     } catch (error) {
       res.status(500).json({ error: "Server error" });

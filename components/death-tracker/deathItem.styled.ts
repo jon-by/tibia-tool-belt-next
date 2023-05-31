@@ -6,7 +6,7 @@ position: relative;
 border: 1px solid ${COLORS.white};
 padding: .2rem;
 margin: .4rem;
-width: 350px;
+width: 320px;
 display: flex;
 justify-content: space-around;
 align-items: center;
