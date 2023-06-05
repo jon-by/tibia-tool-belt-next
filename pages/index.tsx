@@ -2,7 +2,6 @@ import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AnimatedComponent from "@/components/animated-component/AnimatedComponent";
-//import { Poppins } from "next/font/google";
 import { useTranslation } from "next-i18next";
 import Home from "@/components/home/Home";
 

@@ -21,8 +21,7 @@ const Button = ({
       padding={padding}
       onClick={handleClick}
       whileHover={{
-        scale: 1.02,
-        transition: { },
+        scale: 1.02      
       }}
       whileTap={{ scale: 0.95 }}
     >

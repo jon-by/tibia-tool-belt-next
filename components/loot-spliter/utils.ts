@@ -76,11 +76,10 @@ function getHuntData(players: string[], partyData: string) {
 
 function removeFirstSection(partyData: string) {
     let tempData = partyData
-    const balanceIndex = partyData.indexOf("Balance:") + 8
-    // remove leader world to get a cleaner data
+    const balanceIndex = partyData.indexOf("Balance:") + 8  
+      
     tempData = tempData.replace("(Leader)", "")
-
-    // remove first section that we don't need
+    
     tempData = tempData.substring(balanceIndex, partyData.length)
 
     return tempData

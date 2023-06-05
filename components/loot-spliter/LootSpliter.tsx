@@ -19,8 +19,6 @@ import Tops from "./Tops";
 
 const toastId = "wrong-session-data";
 
-type Props = {};
-
 const LootSpliter = () => {
   const [showTip, setShowTip] = useState(false);
   const [huntSession, setHuntSession] = useState("");

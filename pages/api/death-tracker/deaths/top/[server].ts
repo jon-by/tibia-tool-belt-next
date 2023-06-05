@@ -20,6 +20,6 @@ export default async function handler(
       res.status(500).json({ error: "Server error" });
     }
   } else {
-    res.status(404).json({ error: "Server is required" });
+    res.status(404).json({ error: `Server is required and must be a single string eg: server="Antica"` });
   }
 }

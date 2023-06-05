@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useTimer } from "react-timer-hook";
-import Toggle from "../toggle/Toggle";
 import { useTranslation } from "next-i18next";
 import ChangeTimeInput from "./ChangeTimeInput";
 import {
@@ -44,6 +43,11 @@ const TimedIten = ({
   setStartAll,
   toggleItem,
 }: timedItemProps) => {
+
+  /**
+   * Next throw error when use sound and speech withoud useState
+   * Todo: check a way to avoid this error 
+   */
   const [sound, setSound] = useState(() => {
     const sound = new Audio("/sounds/double-beep-tone-alert.wav");
     sound.volume = 0.6;
