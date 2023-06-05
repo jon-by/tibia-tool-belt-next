@@ -282,10 +282,7 @@ const TimedIten = ({
 
     setPauseAll(false);
   }, [pauseAll]);
-
-  useEffect(() => {
-    console.log({ seconds });
-  }, [seconds]);
+  
   useEffect(() => {
     if (!startAll) return;
     if (changed) {

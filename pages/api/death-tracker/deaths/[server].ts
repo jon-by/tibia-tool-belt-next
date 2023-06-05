@@ -15,7 +15,6 @@ export default async function handler(
   const limit = Number(req?.query?.limit)
   const skip = Number(req?.query?.skip)
   const isString = typeof server === "string";
-console.log({skip})
   if (server && isString) {
     try {
       const {deaths, totalResults} = await db.getDeathsByServer({server, limit, skip});

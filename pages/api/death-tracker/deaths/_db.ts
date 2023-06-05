@@ -25,12 +25,12 @@ async function getDeathsByServer({server, limit, skip}:getDeathsProps): Promise<
   const agregation: {}[] = [];
 
   server !== "all" && agregation.push({ $match: { server } });
-
-  agregation.push({ $sort: { timestamp: -1 } });
-
-  skip > 0 && agregation.push({ $skip: skip })
+  agregation.push({ $sort: { timestamp: -1 } });    
   
+  skip > 0 && agregation.push({ $skip: skip })
   limit && agregation.push({ $limit: limit });
+
+  
 
   try {
     const results = await deathsCol.aggregate(agregation);

@@ -26,10 +26,11 @@ const DeathTracker = () => {
 
   async function getDeathsByServer() {
     const skip = prev === 0 ? 0 : qttyToShow * prev;
+    const limit = current === end ? qttyToShow + restDivision : qttyToShow
     
     try {
       setIsLoading(true);
-      const GET_DEATHS_URL = `/api/death-tracker/deaths/${server}?limit=${qttyToShow}&skip=${skip + restDivision}`;
+      const GET_DEATHS_URL = `/api/death-tracker/deaths/${server}?limit=${limit}&skip=${skip}`;
       const rawResponse = await fetch(GET_DEATHS_URL);
       const response = await rawResponse.json();
 
