@@ -12,6 +12,7 @@ const PODIUM_IMAGES = [
   "/images/home/Silver_Goblet.gif",
   "/images/home/Bronze_Goblet.gif",
 ];
+const d = new Date();
 
 type DeathsPodiumProps = {
   isLoading: boolean;
@@ -48,7 +49,7 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
             />
             <strong>{top.name}</strong>
             <p>
-              lvl {top.level} ( {top.count} {t("deaths")} )
+              ( {top.count} {t("deaths")} )
             </p>
           </PodiumItem>
         );
@@ -57,14 +58,11 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
 
   return (
     <PodiumWrapper>
-      <div className="henricus-awards">
-        <h2>Henricus's Awards</h2>
-        <Image
-          width={26}
-          height={29}
-          alt="medal"
-          src="/images/home/Medal_of_Honour.gif"
-        ></Image>
+      <div className="henricus-awards">        
+        <div className="title-wrapper">
+          <h2>Henricus's Awards</h2>
+          <span>( {t(`common:month-${d.getMonth()}`)} )</span>
+        </div>
       </div>
       {topDeaths.length > 0 ? (
         topDeaths.map((top, index) => {

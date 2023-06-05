@@ -26,7 +26,7 @@ import { Death } from "./@types/home-types";
 
 import { WORLDS } from "@/constants/death-tracker";
 
-const d = new Date();
+
 const Home = () => {
   const { t } = useTranslation("tags");
   const [server, setServer] = useState("");
@@ -105,6 +105,9 @@ const Home = () => {
 
       <DeathsWrapper>
         <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
+        <small>
+          {t("common:sort-by")}
+        </small>
         <SelectWorld>
           <select onChange={handleChange} value={server} name="" id="">
             {WORLDS.map((world) => {
@@ -117,9 +120,7 @@ const Home = () => {
           </select>
         </SelectWorld>
 
-        <small>
-          {t("common:sort-by")} ( {t(`common:month-${d.getMonth()}`)} )
-        </small>
+        
         <ScrolableContent>
           {isLoading ? (
             <Skeleton
@@ -137,7 +138,7 @@ const Home = () => {
                 <DeathItem key={death._id}>
                   <h3>{death.name}</h3>
                   <p>
-                    level {death.level} ( {death.count} {t("common:deaths")} )
+                   ( {death.count} {t("common:deaths")} )
                   </p>
                 </DeathItem>
               );

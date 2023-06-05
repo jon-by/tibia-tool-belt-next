@@ -16,7 +16,12 @@ export const PodiumWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    margin: 2rem 0;
+    
+    h2{
+      margin: 0;
+    }
+    
   }
 
   @media only screen and (max-width: 600px) {
