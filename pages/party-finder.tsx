@@ -14,10 +14,10 @@ const partyFinder = () => {
   return (
     <AnimatedComponent>
       <Head>
-        <title>Loot Spliter | Party Finder</title>
+        <title>Party Finder | Tibia Tool Belt</title>
         <meta
           property="og:title"
-          content="Loot Spliter | Party Finder"
+          content="Party Finder | Tibia Tool Belt"
           key="title"
         />
         <meta name="description" content={`${t("party-finder")}`} />
