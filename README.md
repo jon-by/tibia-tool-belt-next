@@ -1,38 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center" id="about">Tibia Tool Belt 🗡 🏹 🧙</h1>
+<p align="center" >Tibia tool belt is a toolkit to help tibia players in their daily lives</p>
 
-## Getting Started
+## Features
+<hr/>
 
-First, run the development server:
+* [Loot Spliter](https://www.tibiatoolbelt.com/en/loot-spliter)   
+  <small>Split the loot using party hunt session analyser and show the result in a pleasant way</small>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+* [Itens Timer](https://www.tibiatoolbelt.com/en/itens-timer)   
+  <small>A timer to let you know when your items are running out of time.</small>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* [Party Finder](https://www.tibiatoolbelt.com/en/party-finder)   
+  <small>Check all online players that can share XP with you </small>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* [Party Finder](https://www.tibiatoolbelt.com/en/imbuiments)   
+  <small>Show all items needed for each imbuing</small>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+* [Death Tracker](https://www.tibiatoolbelt.com/en/death-tracker)   
+  <small>Shows latest deaths for each server</small>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  <small>There is also a tool on the homepage that displays the players that died the most in the month for each server</small>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<hr/>
 
-## Learn More
+## Help us
 
-To learn more about Next.js, take a look at the following resources:
+If you want to suggest a feature or found a bug, please open a new [issue](https://github.com/jon-by/tibia-tool-belt-next/issues)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<hr/>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contact
+you find me in the game with the character [Kall Aley](https://www.tibia.com/community/?name=kall+aley)<br/> or send me a e-mail: yure.df@hotmail.com
+  
+ 
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
+
+
+ 
