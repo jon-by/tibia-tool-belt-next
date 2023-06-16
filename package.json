@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -34,5 +36,15 @@
     "react-tooltip": "^5.10.1",
     "styled-components": "^5.3.9",
     "typescript": "5.0.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "7.0.21",
+    "@storybook/addon-interactions": "7.0.21",
+    "@storybook/addon-links": "7.0.21",
+    "@storybook/blocks": "7.0.21",
+    "@storybook/nextjs": "7.0.21",
+    "@storybook/react": "7.0.21",
+    "@storybook/testing-library": "0.0.14-next.2",
+    "storybook": "7.0.21"
   }
 }
