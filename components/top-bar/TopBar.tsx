@@ -1,13 +1,15 @@
 import React from 'react'
 import LangSwitcher from '../language-swithcer/LangSwitcher'
 import Menu from '../menu/Menu'
-import { TopBarWrapper } from './topBar.styled'
+import { TopBarContainer } from './topBar.styled'
+import Logo from '../logo/Logo'
 const TopBar = () => {
   return (
-    <TopBarWrapper>
+    <TopBarContainer>
+        <Logo/>
         <Menu/>
-        <LangSwitcher/>
-    </TopBarWrapper>
+        <LangSwitcher/> 
+    </TopBarContainer>
   )
 }
 

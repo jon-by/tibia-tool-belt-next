@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { LanguageSwitcherIcon } from "../icons/icons";
-import {
-  Wrapper,
-  CurrentWrapper,
-  ChooseLangM,
-  LangItemM,
-} from "./langSwitcher.styled";
+
 import { AnimatePresence, useCycle } from "framer-motion";
-import { useLanguage } from "@/context/LangContext";
+import { useLanguage } from "../../context/LangContext";
 import { LANGUAGES } from "../../constants/global";
+
+import {
+  LangSwitcherShell,
+  Selectedlanguage,
+  ChooseLangMotionModal,
+  LangItemMotion,
+} from "./langSwitcher.styled";
 
 const LangSwitcher = () => {
   const [isOpen, setIsOpen] = useCycle(false, true);
@@ -17,13 +18,13 @@ const LangSwitcher = () => {
 
   function handleSelect(code: string) {
     setLang(code);
-
     setIsOpen();
   }
 
   return (
-    <Wrapper>
-      <CurrentWrapper
+    <LangSwitcherShell>
+
+      <Selectedlanguage
         whileHover={{
           scale: 1.09,
           transition: { duration: 0.1 },
@@ -32,13 +33,14 @@ const LangSwitcher = () => {
         onClick={() => setIsOpen()}
       >
         <>
-          <LanguageSwitcherIcon width={20} heigth={20} />
+          <LanguageSwitcherIcon width={20} color="#ffd284" heigth={20} />
           {LANGUAGES.find((l) => l.code === lang)?.title}
         </>
-      </CurrentWrapper>
+      </Selectedlanguage>
+
       <AnimatePresence>
         {isOpen && (
-          <ChooseLangM
+          <ChooseLangMotionModal
             initial={{ y: 100, opacity: 1 }}
             animate={{ y: 0 }}
             transition={{
@@ -49,9 +51,9 @@ const LangSwitcher = () => {
             }}
             exit={{ y: 100, opacity: 0 }}
           >
-            {LANGUAGES.map((l, index) => {
+            {LANGUAGES.map((language, index) => {
               return (
-                <LangItemM
+                <LangItemMotion
                   initial={{ y: -50, opacity: 1 }}
                   animate={{ y: 0 }}
                   transition={{
@@ -65,18 +67,18 @@ const LangSwitcher = () => {
                     transition: { duration: 0.1 },
                   }}
                   whileTap={{ scale: 0.9 }}
-                  key={`${l.code}-${index}`}
-                  selected={l.code === lang}
-                  onClick={() => handleSelect(l.code)}
+                  key={`${language.code}-${index}`}
+                  selected={language.code === lang}
+                  onClick={() => handleSelect(language.code)}
                 >
-                  {l.title}
-                </LangItemM>
+                  {language.title}
+                </LangItemMotion>
               );
             })}
-          </ChooseLangM>
+          </ChooseLangMotionModal>
         )}
       </AnimatePresence>
-    </Wrapper>
+    </LangSwitcherShell>
   );
 };
 

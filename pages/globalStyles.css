@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+
 *{
     padding: 0;
     margin: 0;
@@ -6,15 +9,21 @@
 
 html, body, #__next{
     min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
 }
 
 body{
-    background-color: #1f2029;
+    background: rgb(31,32,41);
+background: linear-gradient(180deg, rgba(31,32,41,1) 48%, rgba(61,62,70,1) 100%);
     color: #EAEEFF;
     font-size: .9rem; 
     font-family: sans-serif;  
     overflow-x: hidden;
-    height: 100vh;
+    
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 ul, li{

@@ -1,4 +1,4 @@
-import { useLanguage } from "@/context/LangContext";
+import { useLanguage } from "../../../context/LangContext";
 import React, { useEffect } from "react";
 
 export const LOCAL_LOCALE_KEY = "ttb-locale-key";

@@ -1,72 +1,53 @@
 import styled from "styled-components";
 import Link from 'next/link';
-import { motion } from "framer-motion"
+import { color, motion } from "framer-motion"
 import { COLORS } from '../../constants/global'
+import { opacify } from "polished";
 
-export const MenuWrapper = styled.div`
-position: relative;
+export const MenuContainer = styled.div`
 z-index: 20;
+align-self: center;
 `
 
-export const NavM = styled(motion.nav)`   
-background-color: ${COLORS['button-bg']};
-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
-position: absolute;    
-height: auto;
-width: 380px;
-padding: 16px;
-border-radius: 10px;
 
-@media only screen and (max-width: 400px) {
-    width: 340px;
-}
-
-ul{
-display:grid;
-grid-template-columns: 1fr 1fr 1fr;
-
-
-gap: 16px;
-
-}
+export const MenuItens = styled.ul`
+display: flex;
+justify-content: center;
+align-items: center;
+gap: .5rem;
 `
 
-export const MenuItens = styled.ul` 
-    &>div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+type MenuItemProps = { 
+ selected:number
+}
+export const MenuItem = styled.li<MenuItemProps>`
+list-style: none;
+
+
+
+&:after {
+    content: '';
+    display: block;
+    width: ${({selected}) => selected? "100%":0};
+    height: 2px;
+    background: ${COLORS.active};
+    transition: width .3s;
+}
+
+&:hover{
+    &:after{
+        width: 100%;
     }
-`
-
-export const MenuItenM = styled(motion.li)`    
-    min-width: 100px;    
-      
-`
-type navLinkStyledProps = {
-    active: number
 }
-export const NavLinkStyled = styled(Link)<navLinkStyledProps>`
-color: ${({active}) => active? COLORS.active: COLORS['white']};
-font-size: 12px;
-padding: 8px;
-
-`
-export const Content = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
-`
-export const ImageWrapper = styled.div`
-max-width: 50px;
-min-height: 50px;
-display: flex;
-justify-content: center;
-align-items: center;
-margin-bottom: 8px;
-img{
-    width: 100%;
+a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+    padding: 0.3rem;    
+    color: ${COLORS.white};
+    text-decoration: none;
+    font-weight: 400;
 }
+
 `

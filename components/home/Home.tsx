@@ -69,8 +69,7 @@ const Home = () => {
   }, [server]);
 
   return (
-    <HomeContainer>
-      <h1>Tibia Tool Belt</h1>
+    <HomeContainer>      
       <HomeItens>
         {MENU_OPTIONS.filter((menuOption) => menuOption.url !== "/").map(
           (menuOption) => {

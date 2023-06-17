@@ -1,3 +1,10 @@
+
+import lootSpliterIcon from "../public/images/loot-spliter/Crystal_Coin-icon.gif"
+import itensTimerIcon from "../public/images/itens-timer/Watch-icon.gif"
+import partyFinderIcon from "../public/images/party-finder/Telescope-icon.gif"
+import imbuimentsIcon from  "../public/images/imbuiments/imbuiment-icon.gif"
+import deathTrackerIcon from "../public/images/death-tracker/Skull_Candle.gif"
+
 export const COLORS = {
   "dark-blue": "#051122",
   white: "#EAEEFF",
@@ -7,7 +14,7 @@ export const COLORS = {
   negative: "#ff4a4a",
   amount: "#bfbcbc",
   "timer-item-bg": "#131732",
-  active: "#D1A617",
+  active: "rgb(255 210 132);",
   "body-bg": "#1f2029",
   "item-active": "#f0f0f0",
 };
@@ -21,40 +28,34 @@ export const USING_ITENS_LOCAL_KEY = "using-itens-local";
 
 export const PREFERRED_SERVER_LOCAL = "preferred-server"
 
-export const MENU_OPTIONS = [
-  {
-    title: "Home",
-    icon: "/images/home/Sneaky_Stabber_of_Eliteness-icon.gif",
-    url: "/",
-    description: "home-description",
-  },
+export const MENU_OPTIONS = [  
   {
     title: "Loot Spliter",
-    icon: "/images/loot-spliter/Crystal_Coin-icon.gif",
+    icon: lootSpliterIcon,
     url: "/loot-spliter",
     description: "loot-spliter",
   },
   {
     title: "Itens Timer",
-    icon: "/images/itens-timer/Watch-icon.gif",
+    icon: itensTimerIcon,
     url: "/itens-timer",
     description: "itens-timer-description",
   },
   {
     title: "Party Finder",
-    icon: "/images/party-finder/Telescope-icon.gif",
+    icon: partyFinderIcon,
     url: "/party-finder",
     description: "party-finder",
   },
   {
     title: "Imbuiments",
-    icon: "/images/imbuiments/imbuiment-icon.gif",
+    icon: imbuimentsIcon,
     url: "/imbuiments",
     description: "imbuiments",
   },
   {
     title: "Death Tracker",
-    icon: "/images/death-tracker/Grave.gif",
+    icon: deathTrackerIcon,
     url: "/death-tracker",
     description: "death-tracker-description",
   },

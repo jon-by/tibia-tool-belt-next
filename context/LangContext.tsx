@@ -1,7 +1,7 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
-import { LOCAL_LOCALE_KEY } from "@/components/language-detect/language-detector/LanguageDetect";
+import { LOCAL_LOCALE_KEY } from "../components/language-detect/language-detector/LanguageDetect";
 
 export type langContextType = {
   lang: string;
