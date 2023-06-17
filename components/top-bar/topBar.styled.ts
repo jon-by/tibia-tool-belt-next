@@ -1,9 +1,9 @@
 import { COLORS } from "@/constants/global";
 import styled from "styled-components";
 
-export const TopBarContainer = styled.div`
+export const TopBarContainer = styled.header`
 display: flex;
-justify-content: space-evenly;
+justify-content: space-between;
 align-items:center ;
 margin: .5rem;
 flex-wrap: wrap;

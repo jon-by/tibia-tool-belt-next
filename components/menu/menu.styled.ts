@@ -4,7 +4,7 @@ import { color, motion } from "framer-motion"
 import { COLORS } from '../../constants/global'
 import { opacify } from "polished";
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.nav`
 z-index: 20;
 align-self: center;
 `

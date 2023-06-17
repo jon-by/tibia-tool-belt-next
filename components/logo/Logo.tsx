@@ -14,6 +14,7 @@ const Logo = () => {
             width={200}
             height={55}
             alt="tibia tool belt logo"
+            priority
           />
         </ContentWrapper>        
       </a>

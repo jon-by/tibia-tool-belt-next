@@ -1,5 +1,4 @@
 import { COLORS } from "@/constants/global";
-import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
@@ -7,69 +6,6 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-export const HomeItens = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-top: 16px;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 32px;
-
-  @media only screen and (max-width: 1300px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media only screen and (max-width: 1000px) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media only screen and (max-width: 700px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-export const ItenWrapper = styled(motion.li)`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid ${COLORS.white};
-  border-radius: 5px;
-  padding: 8px;
-  width: 300px;
-  font-size: 14px;
-  cursor: pointer;
-  img{
-    object-fit: contain;
-  }
-
-  h2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(5px, -50%);
-    background-color: ${COLORS["body-bg"]};
-    font-size: 16px;
-    padding: 4px;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
-export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  padding: 8px;
-  gap: 8px;
-  height: 100%;
 `;
 
 export const DeathsWrapper = styled.div`

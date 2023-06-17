@@ -4,18 +4,14 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Skeleton from "react-loading-skeleton";
 import {
-  COLORS,
-  MENU_OPTIONS,
+  COLORS,  
   PREFERRED_SERVER_LOCAL,
 } from "@/constants/global";
 
 import DeathsPodium from "./DeathsPodium";
 
 import {
-  HomeContainer,
-  ItenWrapper,
-  Content,
-  HomeItens,
+  HomeContainer,  
   DeathsWrapper,
   ScrolableContent,
   DeathItem,
@@ -70,35 +66,7 @@ const Home = () => {
 
   return (
     <HomeContainer>      
-      <HomeItens>
-        {MENU_OPTIONS.filter((menuOption) => menuOption.url !== "/").map(
-          (menuOption) => {
-            return (
-              <ItenWrapper
-                whileHover={{
-                  scale: 1.04,
-                  transition: { duration: 0.1 },
-                }}
-                whileTap={{ scale: 0.9 }}
-                key={menuOption.url}
-              >
-                <Link href={menuOption.url}>
-                  <h2>{menuOption.title}</h2>
-                  <Content>
-                    <Image
-                      src={menuOption.icon}
-                      width={42}
-                      height={42}
-                      alt={menuOption.title}
-                    />
-                    <p>{t(menuOption.description)}</p>
-                  </Content>
-                </Link>
-              </ItenWrapper>
-            );
-          }
-        )}
-      </HomeItens>
+      
 
       <DeathsWrapper>
         <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />

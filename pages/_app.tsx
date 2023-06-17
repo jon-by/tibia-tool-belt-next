@@ -4,7 +4,7 @@ import { appWithTranslation } from "next-i18next";
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import LanguageDetect from "@/components/language-detect/language-detector/LanguageDetect";
 import LangContext from "@/context/LangContext";
-import MobileContext from "@/context/ResponsiveCotext";
+import MobileContext from "../context/ResponsiveCotext";
 
 import "./globalStyles.css";
 import "react-toastify/dist/ReactToastify.css";
