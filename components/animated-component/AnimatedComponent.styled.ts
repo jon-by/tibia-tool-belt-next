@@ -9,4 +9,5 @@ justify-content: center;
 align-items: center;
 padding: 0 .5rem;
 min-width: 100%;
+margin-top: 2rem;
 `
