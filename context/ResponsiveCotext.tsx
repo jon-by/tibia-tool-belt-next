@@ -11,7 +11,7 @@ export default function MobileContext({ children }: MobileContextProps) {
 
   useLayoutEffect(() => {
     function updateSize() {
-      window.innerWidth < 1000 ? setIsMobile(true) : setIsMobile(false);
+      window.innerWidth < 1180 ? setIsMobile(true) : setIsMobile(false);
     }
 
     window.addEventListener("resize", updateSize);
