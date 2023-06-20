@@ -34,13 +34,7 @@ export const MENU_OPTIONS = [
     icon: lootSpliterIcon,
     url: "/loot-spliter",
     description: "loot-spliter",
-  },
-  {
-    title: "Itens Timer",
-    icon: itensTimerIcon,
-    url: "/itens-timer",
-    description: "itens-timer-description",
-  },
+  },  
   {
     title: "Party Finder",
     icon: partyFinderIcon,
@@ -59,4 +53,10 @@ export const MENU_OPTIONS = [
     url: "/death-tracker",
     description: "death-tracker-description",
   },
+  {
+    title: "Itens Timer",
+    icon: itensTimerIcon,
+    url: "/itens-timer",
+    description: "itens-timer-description",
+  }
 ];
