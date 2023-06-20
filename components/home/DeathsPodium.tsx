@@ -70,7 +70,8 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
             height={henricusGif.height}
           />
           <h2>Henricus's Awards</h2>
-          <span>( {t(`common:month-${d.getMonth()}`)} )</span>
+          <small> {t(`common:died-most`)} ( {t(`common:month-${d.getMonth()}` )} )</small>
+          
         </div>
       </div>
       {topDeaths.length > 0 ? (

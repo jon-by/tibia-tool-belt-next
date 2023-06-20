@@ -15,15 +15,14 @@ export const PodiumWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;   
-    
+    align-items: center;
+    margin: 0 0 2rem;        
     h2{
       margin: 0;
-    }
-    
+    }    
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 520px) {
     flex-direction: column;
   }
 `;
@@ -50,20 +49,20 @@ export const PodiumItem = styled.div`
     order: 2;
     margin-top: -50px;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 520px) {
       margin: 0;
       order: 0;
     }
   }
   &.order-1 {
     order: 1;
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 520px) {
       order: 1;
     }
   }
   &.order-2 {
     order: 3;
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 520px) {
       order: 2;
     }
   }

@@ -63,8 +63,7 @@ const Home = () => {
   }, [server]);
 
   return (
-    <HomeContainer>      
-      
+    <HomeContainer>        
 
       <DeathsWrapper>
         <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
