@@ -15,8 +15,7 @@ export const PodiumWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 2rem 0;
+    align-items: center;   
     
     h2{
       margin: 0;

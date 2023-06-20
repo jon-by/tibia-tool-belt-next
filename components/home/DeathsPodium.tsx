@@ -7,11 +7,14 @@ import { useTranslation } from "next-i18next";
 
 import { Death } from "./@types/home-types";
 
-const PODIUM_IMAGES = [
-  "/images/home/Golden_Goblet.gif",
-  "/images/home/Silver_Goblet.gif",
-  "/images/home/Bronze_Goblet.gif",
-];
+import henricusGif from "../../public/images/Henricus.gif";
+
+import goldenGlobet from "../../public/images/home/Golden_Goblet.gif";
+import silverGlobet from "../../public/images/home/Silver_Goblet.gif";
+import bronzeGlobet from "../../public/images/home/Bronze_Goblet.gif";
+
+const PODIUM_IMAGES = [goldenGlobet, silverGlobet, bronzeGlobet];
+
 const d = new Date();
 
 type DeathsPodiumProps = {
@@ -42,10 +45,10 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
           <PodiumItem className={`order-${index}`} key={top.name}>
             {index + 1}º
             <Image
-              width={32}
-              height={32}
-              src={PODIUM_IMAGES[index]}
-              alt="second place"
+              width={PODIUM_IMAGES[index].width}
+              height={PODIUM_IMAGES[index].height}
+              src={PODIUM_IMAGES[index].src}
+              alt={`${index + 1}º place`}
             />
             <strong>{top.name}</strong>
             <p>
@@ -58,8 +61,14 @@ const DeathsPodium = ({ isLoading, topDeaths }: DeathsPodiumProps) => {
 
   return (
     <PodiumWrapper>
-      <div className="henricus-awards">        
+      <div className="henricus-awards">
         <div className="title-wrapper">
+          <Image
+            src={henricusGif.src}
+            width={henricusGif.width}
+            alt="Henricus Tibia blessing NPC"
+            height={henricusGif.height}
+          />
           <h2>Henricus's Awards</h2>
           <span>( {t(`common:month-${d.getMonth()}`)} )</span>
         </div>
