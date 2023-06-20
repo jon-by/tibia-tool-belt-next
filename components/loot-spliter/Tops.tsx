@@ -16,6 +16,7 @@ import domtoimage from "dom-to-image";
 import { COLORS } from "@/constants/global";
 import { CheckMark, CopyIcon } from "../icons/icons";
 import { useTranslation } from "next-i18next";
+import { saveDomElementAsImage } from "@/helpers/global-helpers";
 
 type topsProps = {
   tops: topsType | undefined;
@@ -64,33 +65,21 @@ const TopsIten = ({ extraName, values }: topsItenProps) => {
 
 const Tops = ({ tops }: topsProps) => {
   const { t } = useTranslation();
-  const [copied, setCopied] = useState(false);  
+  const [copied, setCopied] = useState(false);
 
-  function copyAsImage() {
-    const node = document.getElementById("tops-element")!;
+  async function copyAsImage() {
+    const savedAsImage = await saveDomElementAsImage("tops-element");
 
-    domtoimage
-      .toBlob(node, { bgcolor: COLORS["body-bg"] })
-      .then((blob) => {
-        navigator.clipboard
-          .write([
-            new ClipboardItem({
-              [blob.type]: blob,
-            }),
-          ])
-          .then(() => {
-            setCopied(true);
-            toast.success(`${t("imageCopiedMessage")} 😜`, {
-              autoClose: 3000,
-            });
-          });
-      })
-      .catch(function (error) {
-        console.error("oops, something went wrong!", error);
-        toast.error(t("copyToImageError"));
+    if (savedAsImage) {
+      setCopied(true);
+      toast.success(`${t("imageCopiedMessage")} 😜`, {
+        autoClose: 3000,
       });
+    } else {
+      console.error("oops, something went wrong!");
+      toast.error(t("copyToImageError"));
+    }
   }
-
   return tops ? (
     <TopsWrapper
       initial={{ y: 100, opacity: 1 }}
