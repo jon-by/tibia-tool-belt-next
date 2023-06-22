@@ -85,7 +85,7 @@ export const SelectWorld = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin: 1rem;
+  
 
   select {
     padding: 0.2rem;

@@ -63,11 +63,9 @@ const Home = () => {
   }, [server]);
 
   return (
-    <HomeContainer>        
+    <HomeContainer>       
 
       <DeathsWrapper>
-        <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
-        <small>{t("common:sort-by")}</small>
         <SelectWorld>
           <select onChange={handleChange} value={server} name="" id="">
             {WORLDS.map((world) => {
@@ -79,6 +77,8 @@ const Home = () => {
             })}
           </select>
         </SelectWorld>
+        <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
+        <small>{t("common:sort-by")}</small>
 
         <ScrolableContent>
           {isLoading ? (
