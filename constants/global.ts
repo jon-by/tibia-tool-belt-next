@@ -47,12 +47,7 @@ export const MENU_OPTIONS = [
     url: "/imbuiments",
     description: "imbuiments",
   },
-  {
-    title: "Death Tracker",
-    icon: deathTrackerIcon,
-    url: "/death-tracker",
-    description: "death-tracker-description",
-  },
+  
   {
     title: "Itens Timer",
     icon: itensTimerIcon,
