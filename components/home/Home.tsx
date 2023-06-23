@@ -65,48 +65,7 @@ const Home = () => {
   return (
     <HomeContainer>       
 
-      <DeathsWrapper>
-        <SelectWorld>
-          <select onChange={handleChange} value={server} name="" id="">
-            {WORLDS.map((world) => {
-              return (
-                <option key={world} value={world}>
-                  {world === "all" ? "--" : world}
-                </option>
-              );
-            })}
-          </select>
-        </SelectWorld>
-        <DeathsPodium isLoading={isLoading} topDeaths={topDeaths} />
-        <small>{t("common:sort-by")}</small>
-
-        <ScrolableContent>
-          {isLoading ? (
-            <Skeleton
-              baseColor={COLORS["body-bg"]}
-              highlightColor="rgba(255,255,255,.1)"
-              count={6}
-              height={34}
-              width={250}
-              style={{ margin: ".2rem 0" }}
-            />
-          ) : deaths.length > 0 ? (
-            deaths.map((death) => {
-              return (
-                //todo: crate a DeathItem component 
-                <DeathItem key={death._id}>
-                  <h3>{death.name}</h3>
-                  <p>
-                    ( {death.count} {t("common:deaths")} )
-                  </p>
-                </DeathItem>
-              );
-            })
-          ) : (
-            <div>{t("common:no-deaths")}</div>
-          )}
-        </ScrolableContent>
-      </DeathsWrapper>
+      
     </HomeContainer>
   );
 };
