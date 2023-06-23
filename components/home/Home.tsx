@@ -18,6 +18,7 @@ import {
 
 import { Death } from "./@types/home-types";
 import { WORLDS } from "@/constants/death-tracker";
+import LootSpliter from "../loot-spliter/LootSpliter";
 
 const Home = () => {
   const { t } = useTranslation("tags");
@@ -65,7 +66,7 @@ const Home = () => {
   return (
     <HomeContainer>       
 
-      
+      <LootSpliter/>
     </HomeContainer>
   );
 };
