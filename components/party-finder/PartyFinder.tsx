@@ -25,7 +25,7 @@ const PartyFinder = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   async function searchChar() {
-    const CHAR_DATA_URL = `https://api.tibiadata.com/v3/character/${charName}`;
+    const CHAR_DATA_URL = `https://api.tibiadata.com/v4/character/${charName}`;
     try {
       setIsLoading(true);
       const rawCharData = await fetch(CHAR_DATA_URL);
@@ -63,7 +63,7 @@ const PartyFinder = () => {
   }
 
   async function searchWorld() {
-    const WORLD_DATA_URL = `https://api.tibiadata.com/v3/world/${charData.world}`;
+    const WORLD_DATA_URL = `https://api.tibiadata.com/v4/world/${charData.world}`;
     try {
       setIsLoading(true);
       const rawWorldData = await fetch(WORLD_DATA_URL);
