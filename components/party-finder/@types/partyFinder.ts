@@ -1,5 +1,5 @@
 export type charDataType = {
-    characters: {
+    character: {
         "character": {
             "name": string;
             "sex": string;

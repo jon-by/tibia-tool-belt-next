@@ -31,7 +31,7 @@ const PartyFinder = () => {
       const rawCharData = await fetch(CHAR_DATA_URL);
       const charData = (await rawCharData.json()) as charDataType;
 
-      if (!charData.characters.character.name) {
+      if (!charData.character.character.name) {
         setIsLoading(false);
         setOnlinePlayers([]);
         toast.error(t("charNameNotFound"));
@@ -39,10 +39,10 @@ const PartyFinder = () => {
       }
 
       setCharData((oldData) => {
-        const name = charData.characters.character.name;
-        const level = charData.characters.character.level;
-        const world = charData.characters.character.world;
-        const vocation = charData.characters.character.vocation;
+        const name = charData.character.character.name;
+        const level = charData.character.character.level;
+        const world = charData.character.character.world;
+        const vocation = charData.character.character.vocation;
         const min = Math.round(level / 1.5);
         const max = Math.round(level * 1.5);
 
@@ -68,7 +68,7 @@ const PartyFinder = () => {
       setIsLoading(true);
       const rawWorldData = await fetch(WORLD_DATA_URL);
       const worldData = await rawWorldData.json();
-      setOnlinePlayers(worldData.worlds.world.online_players);
+      setOnlinePlayers(worldData.world.online_players);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -103,7 +103,7 @@ const PartyFinder = () => {
           <ResultText>
             <p>{t("playersShareText")}</p>
             <p>
-              {charData.name}, {charData.vocation}, {charData.level},
+              {charData.name}, {charData.vocation}, {charData.level},{" "}
               {charData.world}
             </p>
             <p>
