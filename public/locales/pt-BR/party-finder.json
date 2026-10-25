@@ -2,5 +2,6 @@
     "charName": "Digite o nome do seu char",
     "search": "Buscar",
     "playersShareText": "Players online que podem sharear com ",
-    "charNameNotFound": "Personagem não encontrado, por favor, tente novamente."
+    "charNameNotFound": "Personagem não encontrado, por favor, tente novamente.",
+    "apiError": "Não foi possível carregar os dados do TibiaData, tente novamente."
 }

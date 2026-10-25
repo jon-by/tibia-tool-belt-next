@@ -25,10 +25,22 @@ const PartyFinder = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   async function searchChar() {
-    const CHAR_DATA_URL = `https://api.tibiadata.com/v4/character/${charName}`;
+    const CHAR_DATA_URL = `https://api.tibiadata.com/v5/character/${charName}`;
     try {
       setIsLoading(true);
       const rawCharData = await fetch(CHAR_DATA_URL);
+      if (rawCharData.status === 404) {
+        setIsLoading(false);
+        setOnlinePlayers([]);
+        toast.error(t("charNameNotFound"));
+        return false;
+      }
+      if (!rawCharData.ok) {
+        throw new Error(
+          `TibiaData character request failed: ${rawCharData.status}`,
+        );
+      }
+
       const charData = (await rawCharData.json()) as charDataType;
 
       if (!charData.character.character.name) {
@@ -58,22 +70,28 @@ const PartyFinder = () => {
     } catch (error) {
       console.error(error);
       setIsLoading(false);
+      toast.error(t("apiError"));
       return false;
     }
   }
 
   async function searchWorld() {
-    const WORLD_DATA_URL = `https://api.tibiadata.com/v4/world/${charData.world}`;
+    const WORLD_DATA_URL = `https://api.tibiadata.com/v5/world/${charData.world}`;
     try {
       setIsLoading(true);
       const rawWorldData = await fetch(WORLD_DATA_URL);
+      if (!rawWorldData.ok) {
+        throw new Error(`TibiaData world request failed: ${rawWorldData.status}`);
+      }
+
       const worldData = await rawWorldData.json();
       setOnlinePlayers(worldData.world.online_players);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setIsLoading(false);
       setOnlinePlayers([]);
+      toast.error(t("apiError"));
     }
   }
 
